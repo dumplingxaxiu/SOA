@@ -4,11 +4,7 @@ const customerSchema = new mongoose.Schema({
     CustomerID: {
         type: String,
         required: true,
-        unique: true,
-        default: function() {
-            // Tạo CustomerID bắt đầu từ số 100
-            return 'C' + Math.floor(Math.random() * 900 + 100);
-        }
+        unique: true
     },
     FullName: {
         type: String,
