@@ -1,0 +1,28 @@
+npm install bcrypt cookie-parser dotenv express express-handlebars express-session jsonwebtoken mongoose
+
+- account (email, password, date_of_birth, address, phone, role, is_verify)
+- product (_id, name, description, price, category_id)
+- category (_id, name)
+- order (_id, email, status, price, cod, address)
+- product_order (_id, product_id, order_id, price, quantity)
+- review (_id, product_id, email, content, time)
+Một số bảng khác cần thiết như
+- token (email, token) để lưu token xác thực email
+
+- user:
++ Đăng ký bằng email, xác nhận bằng mã OTP gửi đến email đó
++ Lần đầu đăng nhập, hệ thống đề xuất cập nhật profile: họ tên, ngày sinh, sdt, địa chỉ.
++ Mua hàng, xem thông tin đơn hàng, thanh toán.
++ Đánh giá sản phẩm
+- sản phẩm:
++ 2 mục: giày công sở, giày thể thao
++ Thông tin cơ bản: tên, giá, phần bình luận, đánh giá cho user
++ Chứng năng tìm kiếm, lọc theo mức giá.
+- Đơn hàng:
++ Sau khi người dùng thêm sp vào giỏ nhấn thanh toán -> yêu cầu người dùng nhập thông tin cần thiết: email, họ tên, địa chỉ, số điện thoại.
++ Sau khi nhấn nút thanh toán hiện 'thành công' và chuyển đến trang ship cod -> hiện 'thành công' -> quay lại trang chủ -> đơn đã đặt nằm trong mục 'đơn đã mua'.
+- admin:
++ Quản lý danh sách sản phẩm
++ quản lý đơn hàng (đã đặt)
++ quản lý user (tên, email, tài khoản.)
+-> Thêm, xóa, sửa.
