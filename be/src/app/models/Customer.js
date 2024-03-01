@@ -7,6 +7,7 @@ const customerSchema = new mongoose.Schema({
         unique: true,
         default: function() {
             // Tạo CustomerID bắt đầu từ số 100
+            //cái này nên là CCCD
             return 'C' + Math.floor(Math.random() * 900 + 100);
         }
     },
@@ -16,7 +17,12 @@ const customerSchema = new mongoose.Schema({
     },
     BankAccountNumber: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        default: function() {
+            //random 12 so
+            return 'C' + Math.floor(Math.random() * 900000000000 + 100000000000);
+        }
     },
     PhoneNumber: {
         type: String,
@@ -30,7 +36,8 @@ const customerSchema = new mongoose.Schema({
     },
     BankBalance: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     UserName: {
         type: String,
