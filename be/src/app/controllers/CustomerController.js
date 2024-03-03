@@ -1,28 +1,42 @@
 const Customer = require('../models/Customer');
 
 class CustomerController {
+    async index(req, res, next){
+        res.json("Customer API")
+    }
     async getCustomer(req, res, next) {
-        const customer = req.customer
         const customerID = customer.customerID
         try {
-            const result = await Customer.find({ customerID });
-            return res.json({ success: true, result });
+            const customers = await Customer.find();
+            return res.json({ success: true, customers: customers });
         }
         catch (error) {
             return res.json({ success: false, message: "Error!" });
         }
     }
-
+    async getCustomerBySlug(req, res, next){
+        const { slug } = req.params
+        try {
+            const customer = await Customer.findOne({ slug: slug });
+            return res.json({ success: true, customer: customer });
+          } catch (error) {
+            return res.json({ success: false, message: "Error!" });
+          }
+    }
     async addNewCustomer(req, res, next) {
         const { fullName, phoneNum, email, username, password } = req.body;
-        if (!fullName || !phoneNum || !email || !username || !passwor) {
+        if (!fullName || !phoneNum || !email || !username || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
-            const data = new Customer({
-                fullName, phoneNum, email, username, password
+            const customer = new Customer({
+                fullName,
+                phoneNum, 
+                email, 
+                username, 
+                password
             })
-            await data.save();
+            await customer.save();
             return res.json({ success: true, message: "Add new customer successfully!", data });
         }
         catch (error) {
@@ -36,13 +50,40 @@ class CustomerController {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
-            await Customer.updateOne({customerID}, {fullName, phoneNum, email, username, password});
-            return res.json({ success: true, message: "Update customer successfully!" });
+            const customer = await Customer.findByIdAndUpdate(
+                customerID, 
+                {fullName, 
+                    phoneNum, 
+                    email, 
+                    username, 
+                    password});
+
+            return res.json({ 
+                 success: true,
+                 message: "Update customer successfully!",
+                 customer: customer 
+                });
         }
         catch (error) {
             return res.json({ success: false, message: "Error!" });
         }
     }
+
+    async deleteCustomer(req, res, next) {
+        const { id } = req.body;
+        try {
+          if (!id) {
+            return res.json({ success: false, message: "Missing id!" });
+          }
+          await Customer.findByIdAndRemove(id);
+          return res.json({ 
+            success: true, 
+            message: "Product deleted",
+            product_id: id });
+        } catch (error) {
+          return res.json({ success: false, message: "Error!" });
+        }
+      }
 }
 
-module.exports = new CartController();
+module.exports = new CustomerController();
