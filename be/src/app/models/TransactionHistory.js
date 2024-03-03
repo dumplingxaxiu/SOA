@@ -6,20 +6,21 @@ const transactionHistorySchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    ReceiverID: {
+    SenderID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer'
     },
-    SenderID: {
+    SenderName: {
+        type: String
+    },
+    ReceiverID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer'
     },
     ReceiverName: {
         type: String
     },
-    SenderName: {
-        type: String
-    },
+    
     TransactionAmount: {
         type: Number,
         required: true

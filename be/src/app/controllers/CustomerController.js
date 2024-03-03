@@ -16,8 +16,9 @@ class CustomerController {
     }
     async getCustomerBySlug(req, res, next){
         const { slug } = req.params
+        const customerID = req.user.id
         try {
-            const customer = await Customer.findOne({ slug: slug });
+            const customer = await Customer.findOne({customerID:id, slug: slug });
             return res.json({ success: true, customer: customer });
           } catch (error) {
             return res.json({ success: false, message: "Error!" });
