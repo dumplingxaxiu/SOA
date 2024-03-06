@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" />
+    <script
+        type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <!-- /fonts -->
+    <!-- css -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="Project_css/style.css" rel='stylesheet' type='text/css' media="all" />
+    <!-- /css -->
+</head>
+
+<body>
+    <h1 class="w3ls">iBanking SignIn </h1>
+    <div class="content-w3ls">
+        <div class="content-agile1">
+            <h2 class="agileits1">iBanking</h2>
+            <p class="agileits2">Pay the school fee</p>
+        </div>
+        <div class="content-agile2">
+            <form action="#" method="post">
+
+                <div class="form-control w3layouts" style=" margin-top: 100px;">
+                    <input type="email" id="email" name="email" placeholder="Phone/mail@gmail.com"
+                        title="Please enter a valid email" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="password" class="lock" name="password" placeholder="Password" id="password1"
+                        required="">
+                </div>
+                <input type="button" class="login" value="Login" id="loginButton">
+            </form>
+            <p class="wthree w3l" id="signupButton">Create new account <-- </p>
+                    <ul class="social-agileinfo wthree2">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p class="copyright w3l">© 2024<a target="_blank">SOA</a></p>
+
+    <script>
+        var loginButton = document.getElementById("loginButton");
+
+        if (loginButton) {
+            loginButton.addEventListener("click", function (e) {
+                window.location.href = "./HomePage.html";
+            });
+        }
+
+        var signupButton = document.getElementById("signupButton");
+
+        if (signupButton) {
+            signupButton.addEventListener("click", function (e) {
+                window.location.href = "./SignUp.html";
+            });
+        }
+    </script>
+</body>
+
+</html>
