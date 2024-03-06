@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/global.css" />
+    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/PaymentInformationPage.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Redacted Script:wght@400&display=swap" />
+</head>
+
+<body>
+    <div class="paymentinformationpage">
+        <section class="f-r-a-m-e-payment-info">
+            <div class="frame-container">
+                <div class="thng-tin-hc-ph-parent">
+                    <div class="thng-tin-hc">THÔNG TIN HỌC PHÍ</div>
+                    <div class="somethingsomethingsomethingsom">
+                        SomethingSomethingSomethingSomething
+                    </div>
+                </div>
+                <div class="f-r-a-m-e-settings">
+                    <div class="f-r-a-m-e-input-fields">
+                        <div class="f-r-a-m-e-detail-field">
+                            <b class="something">Something</b>
+                            <div class="something1">Something</div>
+                        </div>
+                        <div class="payment-frame-group">
+                            <div class="frame-splitter">
+                                <b class="something2">Something</b>
+                                <b class="something3">Something</b>
+                            </div>
+                            <div class="frame-splitter1">
+                                <div class="something4">Something</div>
+                                <div class="something5">Something</div>
+                            </div>
+                            <div class="total-frame">
+                                <div class="something6">Something</div>
+                                <div class="something7">Something</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="frame-with-sliders">
+            <div class="split-frame">
+                <h1 class="somethingsomethingsomethingsom1">
+                    <p class="somethingsomethingsomethingsom2">
+                        somethingsomethingsomethingsomething
+                    </p>
+                    <p class="blank-line">&nbsp;</p>
+                    <p class="blank-line1">&nbsp;</p>
+                    <p class="somethingsomethingsomethingsom3">
+                        somethingsomethingsomethingsomething
+                    </p>
+                    <p class="blank-line2">&nbsp;</p>
+                    <p class="blank-line3">&nbsp;</p>
+                    <p class="somethingsomething">somethingsomething</p>
+                </h1>
+                <div class="input-field-container">
+                    <div class="payment-info-label1">
+                        <b class="vnd1">18.000.000000VND</b>
+                        <footer class="v-n-d-text-frame">
+                            <button class="group-button" id="groupButton">
+                                <div class="frame-child7"></div>
+                                <div class="payment-field-name">Back</div>
+                            </button>
+                            <button class="pay-button-frame">
+                                <div class="background-rectangle" id="backgroundRectangle"></div>
+                                <div class="thanh-ton">Thanh toán</div>
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        var groupButton = document.getElementById("groupButton");
+        if (groupButton) {
+            groupButton.addEventListener("click", function (e) {
+                window.location.href = "./PaymentOfTuitionFees.html";
+            });
+        }
+
+        var backgroundRectangle = document.getElementById("backgroundRectangle");
+        if (backgroundRectangle) {
+            backgroundRectangle.addEventListener("click", function (e) {
+                window.location.href = "./PaymentOfTuitionFees.html";
+            });
+        }
+    </script>
+</body>
+
+</html>

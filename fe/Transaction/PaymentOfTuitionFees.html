@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/global.css" />
+    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/PaymentOfTuitionFees.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Redacted Script:wght@400&display=swap" />
+    <style>
+        .back-button,
+        .pay-button {
+            padding: 10px 20px;
+            font-size: 50px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button {
+            background-color: #caeacc;
+            color: #000;
+        }
+
+        .pay-button {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .back-button:hover,
+        .pay-button:hover {
+            background-color: #51a16a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="paymentoftuitionfees">
+        <img class="paymentoftuitionfees-child" alt="" />
+
+        <h1 class="online-fees-payment">Online Fees Payment</h1>
+        <img class="paymentoftuitionfees-item" alt="" />
+
+        <section class="paymentoftuitionfees-inner">
+            <div class="frame-parent">
+                <header class="rectangle-wrapper">
+                    <div class="rectangle1">
+                        <div class="line">
+                            <div class="payment-summary">
+                                <div class="student-info-frame">
+
+                                    <img class="text-icon1" alt=""
+                                        src="../dk_dn_trgchu_profile_thongbao/images/logo.jpg" />
+                                </div>
+                            </div>
+                            <h2 class="bank-center">Bank Center</h2>
+                        </div>
+                        <div class="frame-div">
+                            <div class="rectangle2">
+                                <div class="line1"></div>
+                                <img class="frame-icon" alt="" />
+
+                                <img class="frame-icon1" loading="lazy" alt="" />
+                            </div>
+                            <div class="rectangle-parent1">
+                                <div class="frame-child1"></div>
+                                <img class="image-7-icon" loading="lazy" alt="" src="./public/image-7@2x.png" />
+                            </div>
+                            <div class="bank-details">
+                                <div class="unknown-01">Unknown_01</div>
+                            </div>
+                            <div class="payment-summary1">
+                                <div class="student-info-frame1">
+
+
+                                    <img class="student-info-frame-item" alt=""
+                                        src="../dk_dn_trgchu_profile_thongbao/images/avatar_user.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="fee-details-frame">
+                    <img class="fee-subject-line" loading="lazy" alt="" />
+
+                    <div class="fee-details-frame-inner">
+                        <div class="i-d-name-parent">
+                            <div class="i-d-name">
+                                <div class="user-i-d-name">
+                                    <div class="user-i-d-name-inner">
+                                        <div class="frame-group">
+                                            <div class="payment-details-frame-wrapper">
+                                                <div class="payment-details-frame">
+                                                    <div class="user-id">User ID :</div>
+                                                    <div class="user-name">User Name :</div>
+                                                    <div class="user-phone">User Phone:</div>
+                                                </div>
+                                            </div>
+                                            <div class="payment-frame">
+                                                <div class="email-frame">
+                                                    <input class="email-frame-child" type="text" />
+
+                                                    <input class="email-frame-item" type="text" />
+
+                                                    <input class="email-frame-inner" type="text" />
+                                                </div>
+                                                <div class="payment-info">
+                                                    <div class="email">Email:</div>
+                                                </div>
+                                                <input class="email-input" type="text" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fee-details">
+                                        <div class="rm-50">RM 50</div>
+                                        <div class="fee-subjectper-month">
+                                            Fee subject(Per Month)
+                                        </div>
+                                        <div class="payment-monthly-fee-line"></div>
+                                        <div class="payment-monthly-fee-line1"></div>
+                                        <img class="fee-details-child" loading="lazy" alt="" />
+                                        <div class="rm-501">RM 50</div>
+                                        <div class="xxx">xxx</div>
+                                        <div class="rm-502">RM 50</div>
+
+                                        <div class="xxxxx">xxxxx</div>
+                                        <div class="xxxxx1">xxxxx</div>
+                                        <div class="id-fee">ID fee</div>
+                                        <div class="payment-monthly-fee-line2"></div>
+                                        <div class="rm-503">RM 50</div>
+                                        <img class="fee-details-item" alt="" />
+
+
+
+                                        <div class="student-i-d-info">
+                                            <img class="student-i-d-info-child" alt=""
+                                                src="./public/rectangle-31.svg" />
+
+                                            <div class="payment-amount-list">
+                                                <div class="payment-amount-list-child"></div>
+                                                <div class="rectangle-parent2">
+                                                    <div class="frame-child2"></div>
+                                                    <div class="payment-subject-detail" id="paymentSubjectDetail"></div>
+                                                </div>
+                                                <div class="rectangle-parent3">
+                                                    <div class="frame-child3"></div>
+                                                    <div class="payment-amount-list1">
+                                                        Payment Amount List
+                                                    </div>
+                                                    <div class="payment-info-text"></div>
+                                                </div>
+                                                <div class="rectangle-parent4">
+                                                    <div class="frame-child4"></div>
+                                                    <div class="frame-child5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img class="line-icon" loading="lazy" alt="" />
+
+                            <div class="frame-child6"></div>
+                            <div class="payment-services">
+                                <div class="payment-services-child"></div>
+                                <div class="student-info-wrapper">
+                                    <div class="student-info">
+                                        <div class="payment-subject-details"></div>
+                                        <div class="payment-subject-detail1">
+                                            Payment subject detail
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="student-i-dand-name">
+                                    <div class="online-banking-text">
+                                        <div class="online-banking-text-child"></div>
+                                        <div class="payment-information">Payment information</div>
+                                    </div>
+                                    <div class="fee-and-subject-line">
+                                        <div class="payment-amount-list2">
+                                            <div class="student-i-dand-name-box">
+                                                <div class="online-banking-label">
+                                                    <div class="student-id">Student ID:</div>
+                                                    <div class="students-full-name">
+                                                        Students full name:
+                                                    </div>
+                                                </div>
+                                                <div class="online-banking">Online Banking:</div>
+                                            </div>
+                                            <div class="enter-payment-amount">
+                                                <div class="polygon-shape-parent">
+                                                    <div class="polygon-shape">
+                                                        <input class="polygon-shape-child" type="text" />
+
+                                                        <input class="polygon-shape-item" type="text" />
+                                                    </div>
+                                                    <div class="online-payment-service-label">
+
+                                                    </div>
+                                                </div>
+                                                <div class="enter-payment-amount-inner">
+                                                    <div class="mandatory-fee-label-parent">
+                                                        <div class="mandatory-fee-label"></div>
+
+
+                                                        <div class="online-payment-service">
+                                                            Online Payment Service
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fee-summary-container">
+                                                <div class="student-i-d-and-name-label">
+                                                    <div class="vietnamese-text-for-fee">
+                                                        <div class="rectangle-shape-for-fee">
+                                                            <input class="m-hc-ph" placeholder="Mã học phí"
+                                                                type="text" />
+                                                            <div class="payment-details-container"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="vietnamese-text-for-fee">
+                                                        <div class="rectangle-shape-for-fee">
+                                                            <input class="m-hc-ph" placeholder="Số tiền khả dụng"
+                                                                type="text" />
+                                                            <div class="payment-details-container"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="confirm-payment-button">
+                                                    <div class="enter-amount-input-label">
+                                                        <div class="enter-your-amount">
+                                                            Enter Your Amount:
+                                                        </div>
+                                                    </div>
+                                                    <div class="online-banking-logo">
+                                                        <div class="student-info-container"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="payment-service-name-label">
+            <footer class="rectangle-shape-for-group">
+                <button class="back-button" onclick="goBack()" id="back">Back</button>
+                <button class="pay-button" onclick="proceedToPayment()" id="pay">Pay</button>
+            </footer>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        var paymentSubjectDetail = document.getElementById("paymentSubjectDetail");
+        if (paymentSubjectDetail) {
+            paymentSubjectDetail.addEventListener("click", function (e) {
+                window.location.href = "./PaymentInformationPage.html";
+            });
+        }
+
+        var back = document.getElementById("back");
+        if (back) {
+            back.addEventListener("click", function (e) {
+                window.location.href = "../dk_dn_trgchu_profile_thongbao/HomePage.html";
+            });
+        }
+
+        var pay = document.getElementById("pay");
+        if (pay) {
+            pay.addEventListener("click", function (e) {
+                window.location.href = "./OTPConfirmationPage.html";
+            });
+        }
+    </script>
+</body>
+
+</html>

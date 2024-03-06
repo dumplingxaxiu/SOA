@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/global.css" />
+    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/TransactionResultPage.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Redacted Script:wght@400&display=swap" />
+</head>
+
+<body>
+    <div class="transactionresultpage">
+        <div class="container-frame">
+            <div class="f-r-a-m-e-parent">
+                <div class="f-r-a-m-e">
+                    <div class="transaction-result-frames">
+                        <h3 class="abcbank">ABCBank</h3>
+                    </div>
+                    <div class="ellipse-shape"></div>
+                    <h3 class="thanh-ton-thnh">Thanh toán thành công</h3>
+                </div>
+                <div class="amount-display">
+                    <div class="vnd4">18.000.000vnd</div>
+                </div>
+                <div class="thursday-date">
+                    <div class="th-nm-ngy">thứ năm, ngày 8 tháng 2 năm 2024</div>
+                </div>
+            </div>
+        </div>
+        <section class="account-receiver-frame">
+            <div class="vnd-text">
+                <div class="transaction-details-frame">
+                    <div class="recipient-name-frame">
+                        <div class="line-separator">
+                            <div class="person-frame">
+                                <div class="tn-ngi-th">Tên người thụ hưởng</div>
+                                <div class="truong-x">Truong x</div>
+                            </div>
+                            <div class="transaction-i-d-frame">
+                                <img class="b-i-d-v-bank-text" loading="lazy" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-result-frame">
+                        <div class="ti-khon-th">Tài khoản thụ hưởng</div>
+                        <div class="line-separator1">
+                            <div class="xxx-x">231xxx x</div>
+                        </div>
+                    </div>
+                    <div class="line-separator2">
+                        <img class="transaction-details-frame1" loading="lazy" alt="" />
+                    </div>
+                    <div class="ngn-hang-thu-huong-label">
+                        <div class="ngn-hng-th">Ngân hàng thụ hưởng</div>
+                        <div class="line-separator3">
+                            <div class="bidvbank1">BIDVBank</div>
+                        </div>
+                    </div>
+                    <div class="line-separator4">
+                        <img class="details-frame-icon" loading="lazy" alt="" />
+                    </div>
+                    <div class="maa-giao-dich-label">
+                        <div class="transaction-info-frame">
+                            <div class="noidung-label">
+                                <div class="m-giao-dch">Mã giao dịch</div>
+                                <div class="empty-frame1">
+                                    <div class="line-separator5">123123541</div>
+                                </div>
+                            </div>
+                            <div class="group-container">
+                                <div class="text-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="abczxc-label">
+                <div class="payment-info1">
+                    <input class="content-container" type="text" />
+
+                    <div class="content-text">
+                        <div class="ni-dung">Nội dung</div>
+                        <div class="grouping-frame">
+                            <button class="rectangle-parent7" id="groupButton">
+                                <div class="frame-child10"></div>
+                                <div class="text-element">Home</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="variable-account">
+                    <div class="abczxc">abc....zxc</div>
+                    <div class="variable-account-inner">
+                        <button class="rectangle-parent8" id="groupButton1">
+                            <div class="frame-child11"></div>
+                            <div class="text1">Continue</div>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+    <script>
+        var groupButton = document.getElementById("groupButton");
+        if (groupButton) {
+            groupButton.addEventListener("click", function (e) {
+                window.location.href = "../dk_dn_trgchu_profile_thongbao/HomePage.html";
+            });
+        }
+
+        var groupButton1 = document.getElementById("groupButton1");
+        if (groupButton1) {
+            groupButton1.addEventListener("click", function (e) {
+                window.location.href = "./PaymentOfTuitionFees.html";
+            });
+        }
+    </script>
+</body>
+
+</html>
