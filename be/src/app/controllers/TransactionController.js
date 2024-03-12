@@ -1,7 +1,7 @@
 const Customer = require("../models/Customer")
 const Transaction = require("../models/TransactionHistory")
 
-class TransactionController{
+class TransactionController {
     async getMyTransHistory(req, res, next) {
         const customerID = req.user.id //chua biet thong tin login
         try {
@@ -66,6 +66,20 @@ class TransactionController{
         }
     }
     //lam ham delete, update o day de bi conflict voi balance cua banking account
+    async deleteTransaction(req,res,next){
+        const customerID = req.user.id
+        const transactionID =req. //chua có transactionID
+        try {
+            const transaction = await Transaction.findById(transactionID);
+            if (!transaction) {
+                return res.json({ success: false, message: "Khong tìm thấy transaction id" });
+            }
+            await transaction.remove();
+            return res.json({ success: true, message: "Xóa transaction thành công" });
+        } catch (error) {
+            console.error("Error:", error);
+            return res.json({ success: false, message: "Không xóa được transaction" });
+        }
+    }
 }
-
 module.exports = new TransactionController()
