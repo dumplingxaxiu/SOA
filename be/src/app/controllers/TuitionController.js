@@ -7,27 +7,18 @@ class TuitionController {
         try {
             const tuition = await Tuition.findOne({ StudentID: studentID });
             if (tuition) {
-                
+                // Trả về dữ liệu tuition
+                return res.json({
+                    studentID: tuition.studentID,
+                    tuition: tuition.tuition,
+                    status: tuition.status,
+                });
             } else {
-                return null;
+                return res.json({ message: 'Không tìm thấy học phí cho học viên này.' });
             }
         } catch (error) {
-            throw error;
+            return next(error);
         }
-    }
-
-    async checkState(req,res,next) {
-        try {
-            const tuition = await Tuition.findOne({ StudentID: studentID });
-            if (tuition) {
-                return tuition.State;
-            } else {
-                return null;
-            }
-        } catch (error) {
-            throw error;
-        }
-    }
 }
-
+class BankAccount
 module.exports = new TuitionController();
