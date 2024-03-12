@@ -20,5 +20,21 @@ class TuitionController {
             return next(error);
         }
 }
-class BankAccount
+class BankAccount {
+    async checkAccountBalance(req,res,next){
+        const studentid = req. //chua có studentid
+        const customerid = req.user.customerid ;
+         try {
+            const tuitionAmount = tuition.tuition;
+            const accountBalance = bankAccount.AccountBalance;
+            if (accountBalance >= tuitionAmount) {
+                return res.json({ message: 'Số dư trong tài khoản đủ' });
+            } else {
+                return
+            }
+        } catch (error) {
+            return next(error);
+        }
+    }
+}
 module.exports = new TuitionController();
