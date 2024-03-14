@@ -1,3 +1,55 @@
+.reset-button {
+    background-color: #ef1414;
+    border: 1px solid #120404;
+    color: #dbd9e5;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.reset-button:hover {
+    background-color: #950f0f;
+    border-color: #5911cd;
+}
+
+.hide {
+    display: none;
+}
+
+body {
+    height: 100vh;
+    background: #416D19;
+}
+
+.container {
+
+    background-color: #ffffff;
+    padding: 1em 0.5em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 0.8em;
+    box-shadow: 0 45px 60px rgba(19, 14, 1, 0.7);
+}
+
+.otp-input {
+    width: 100px;
+    height: 100px;
+    border-radius: 60%;
+    text-align: center;
+    font-size: 32px;
+
+    align-items: center;
+    line-height: 70px;
+    /* Có thể điều chỉnh dựa trên độ cao của hộp chứa */
+    margin: 0;
+    border: none;
+
+}
+
 .vui-lng-kim {
     position: relative;
     letter-spacing: -0.01em;
@@ -10,7 +62,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: left;
     padding: 0 var(--padding-xl);
     box-sizing: border-box;
     max-width: 100%;
@@ -24,6 +76,7 @@
     background-color: #FFF67E;
     width: 100%;
     height: 100%;
+
 }
 
 .div49 {
@@ -40,14 +93,19 @@
     height: 180px;
     width: 180px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .o-t-p-circle-group-item {
-    align-self: stretch;
-    height: 180px;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     border-radius: 50%;
     background-color: #BFEA7C;
+    width: 100%;
+    height: 100%;
 }
 
 .div50 {
@@ -132,6 +190,18 @@
     height: 100%;
 }
 
+.o-t-p-circle-group-child,
+.o-t-p-circle-group-item,
+.o-t-p-circle-group-inner,
+.ellipse-div,
+.o-t-p-circle-group-child1 {
+    display: flex;
+    align-items: center;
+    /* Canh giữa theo chiều dọc */
+    justify-content: center;
+    /* Canh giữa theo chiều ngang */
+}
+
 .div53 {
     position: absolute;
     top: 42px;
@@ -175,7 +245,7 @@
 .cha-nhn-c-otp-wrapper {
     width: 687px;
     flex-direction: row;
-    justify-content: center;
+    justify-content: left;
     padding: 0 var(--padding-xl);
     box-sizing: border-box;
 }
@@ -217,12 +287,19 @@
     z-index: 1;
 }
 
+#groupButton {
+    font-size: 20px;
+    /* Kích thước phông chữ */
+    /* Các thuộc tính CSS khác */
+}
+
 .rectangle-parent6 {
     cursor: pointer;
     border: 1px solid var(--color-black);
     padding: var(--padding-sm) var(--padding-5xl) var(--padding-smi) var(--padding-4xl);
     background-color: var(--secondary-white);
     width: 199px;
+    height: 60px;
     border-radius: var(--br-xs);
     box-sizing: border-box;
     display: flex;
@@ -287,6 +364,7 @@
 
 .otpconfirmationpage {
     width: 100%;
+    height: 860px;
     position: relative;
     background-color: var(--secondary-white);
     overflow: hidden;

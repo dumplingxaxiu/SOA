@@ -3,12 +3,16 @@
     outline: 0;
     background-color: #fe0d0d;
     align-self: stretch;
-    height: 49px;
+    width: 40px;
+    height: 40px;
     position: relative;
     min-width: 38px;
 }
 
+
+
 .frame-wrapper {
+    margin-top: 5px;
     margin-left: 20px;
     width: 40px;
     /* Đặt kích thước chiều rộng */
@@ -45,6 +49,7 @@
     /* Nằm bên trái */
     gap: 0 25px;
     max-width: 100%;
+    background-color: #416D19;
 }
 
 
@@ -258,6 +263,10 @@
     background-color: #C5E898;
     border: 0 solid var(--color-black);
     box-sizing: border-box;
+    box-shadow: 1px 4px 5px rgba(4, 3, 3, 0.8);
+    /* Thêm shadow */
+    border: 1px solid #ccc;
+    /* Thêm viền */
 }
 
 .account-balance {
@@ -756,7 +765,7 @@
 
 .frame-button,
 .frame-child3 {
-    background-color: #F3F3F3;
+    background-color: #ffffff;
 }
 
 .frame-button {
@@ -794,7 +803,8 @@
 
 .rectangle-parent2 {
     width: 36px;
-    background-color: var(--color-gainsboro-300);
+    height: 41px;
+    background-color: #37e2e8;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -824,13 +834,19 @@
 }
 
 .image-6-icon {
-    width: 65px;
-    height: 69px;
+    margin-right: 10px;
+    width: 62px;
+    height: 64px;
     top: 60px;
     left: 343px;
     object-fit: cover;
     cursor: pointer;
+    border-radius: 90%;
+    /* Đặt giá trị border-radius thành 50% để bo tròn */
+    border: 4px solid #c6bebe;
+    /* Thêm đường viền 2px và màu trắng (hoặc màu bạn muốn) */
 }
+
 
 .recharge1 {
     top: 99px;
@@ -961,7 +977,7 @@
 .account-balance-text {
     width: 1355px;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     padding: 0 var(--padding-xl) 0 0;
     gap: 17px 0;
     max-width: 100%;
@@ -975,14 +991,14 @@
 .profileuser,
 .shape-with-text {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     box-sizing: border-box;
 }
 
 .shape-with-text {
     align-self: stretch;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 0 var(--padding-mini);
     max-width: 100%;
 }
@@ -994,8 +1010,6 @@
     overflow: hidden;
     flex-direction: column;
     align-items: flex-end;
-    padding: var(--padding-3xs) 0 42px;
-    gap: 24px 0;
     letter-spacing: normal;
 }
 

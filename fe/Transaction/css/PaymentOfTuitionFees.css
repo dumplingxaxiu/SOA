@@ -1,30 +1,192 @@
+.dienthongtin {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px dashed #015108;
+    border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    background-color: #1bce296c;
+    color: #970f70;
+}
+
+#available-balances {
+    pointer-events: none;
+    /* Không cho phép tương tác */
+    background-color: #a7131350;
+    /* Màu nền khác biệt */
+}
+
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-container input {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    /* Màu khi input được focus */
+}
+
+
+.customer-info {
+    margin-bottom: 20px;
+    max-width: 1674.670px;
+
+    margin: 0 auto;
+}
+
+.customer-info div {
+    margin-bottom: 10px;
+}
+
+.customer-info span {
+    font-weight: bold;
+}
+
+body {
+    height: 900px;
+}
+
+/* CSS cho nút chuyển trang */
+.link-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.link-button:hover {
+    background-color: #0056b3;
+}
+
+.table-container {
+    max-width: 1674.670px;
+    height: 400px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.header-row {
+    position: sticky;
+    top: 0;
+    background-color: #f2f2f2;
+    z-index: 1;
+}
+
+/* Hiển thị thanh cuộn dọc khi nội dung vượt quá chiều cao */
+#table-body-wrapper {
+    overflow-y: hidden;
+    /* Mặc định ẩn thanh cuộn */
+    max-height: 400px;
+    /* Giới hạn chiều cao */
+}
+
+.bt_back {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid var(--color-black);
+    padding: var(--padding-sm) var(--padding-5xl) var(--padding-smi) var(--padding-4xl);
+    background-color: var(--secondary-white);
+    border-radius: var(--br-xs);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.bt_back:hover {
+    background-color: var(--color-gainsboro-100);
+    box-sizing: border-box;
+}
+
+.bt_back:hover {
+    border: 1px solid var(--color-darkslategray-200);
+}
+
 .paymentoftuitionfees-child {
     width: 1250px;
     height: 7px;
     position: relative;
     object-fit: contain;
-    transform: rotate(-0.2deg);
     display: none;
     max-width: 100%;
     z-index: 0;
 }
 
+.back-button,
+.pay-button {
+    padding: 10px 20px;
+    font-size: 30px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button {
+    background-color: #caeacc;
+    color: #000;
+}
+
+.pay-button {
+    width: 150px;
+    height: 50px;
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.back-button:hover,
+.pay-button:hover {
+    background-color: #51a16a;
+}
+
 .online-fees-payment {
     margin: 0 !important;
     width: 598px;
-    height: 66px;
-    position: absolute;
     top: 83px;
-    left: 2.1px;
-    font-size: inherit;
+
+
     letter-spacing: -0.01em;
     line-height: 150%;
     display: flex;
     font-style: italic;
-    font-weight: 900;
     font-family: inherit;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
     z-index: 3;
 }
 
@@ -33,7 +195,6 @@
     height: 7px;
     position: relative;
     object-fit: contain;
-    transform: rotate(-0.2deg);
     display: none;
     max-width: 100%;
     z-index: 2;
@@ -55,7 +216,6 @@
 
 .text-icon1 {
     object-fit: contain;
-    transform: rotate(-0.2deg);
 }
 
 
@@ -111,7 +271,7 @@
     width: 406px;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: flex-start;
     gap: 0 26px;
     max-width: 100%;
@@ -130,7 +290,6 @@
 .frame-icon1 {
     position: absolute;
     object-fit: contain;
-    transform: rotate(-0.2deg);
 }
 
 .frame-icon {
@@ -158,7 +317,6 @@
 .frame-child1,
 .image-7-icon {
     position: absolute;
-    transform: rotate(-0.2deg);
 }
 
 .frame-child1 {
@@ -186,10 +344,10 @@
 }
 
 .unknown-01 {
-    align-self: stretch;
+    align-self: center;
     height: 22px;
     position: relative;
-    font-weight: 500;
+    font-weight: 300;
     display: flex;
     align-items: center;
     flex-shrink: 0;
@@ -223,7 +381,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
 }
 
 .student-info-frame-child {
@@ -270,7 +428,6 @@
 }
 
 .frame-div {
-    width: 453px;
     gap: 0 22px;
     font-size: var(--font-size-5xl);
 }
@@ -281,22 +438,26 @@
     display: flex;
     flex-direction: row;
     max-width: 100%;
+
 }
 
 .rectangle1 {
+    width: 100%;
     align-self: stretch;
     flex: 1;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: var(--gap-xl);
+    background-color: #416D19;
+    height: 100%;
 }
 
 .rectangle-wrapper {
-    width: 1468px;
+    width: 100%;
     height: 61px;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 0 var(--padding-12xl);
+
     box-sizing: border-box;
     text-align: left;
     font-size: var(--font-size-21xl);
@@ -305,11 +466,11 @@
 }
 
 .fee-subject-line {
-    width: 1440px;
-    height: 3.1px;
+    width: 1900px;
+    height: 5px;
     position: relative;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
     max-width: 100%;
     z-index: 4;
 }
@@ -496,7 +657,7 @@
     width: 1px;
     height: 227.4px;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
     z-index: 1;
 }
 
@@ -768,7 +929,7 @@
     width: 1250px;
     height: 7px;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
 }
 
 .fee-details-item {
@@ -789,7 +950,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    transform: rotate(-0.2deg);
+
 }
 
 .payment-amount-list-child {
@@ -806,7 +967,6 @@
 .frame-child2,
 .payment-subject-detail {
     position: absolute;
-    transform: rotate(-0.2deg);
     transform-origin: 0 0;
 }
 
@@ -843,7 +1003,7 @@
     background-color: var(--color-yellowgreen);
     width: 100%;
     height: 100%;
-    transform: rotate(-0.2deg);
+
     transform-origin: 0 0;
 }
 
@@ -866,7 +1026,7 @@
     background-color: var(--color-darkblue);
     width: 27px;
     height: 31px;
-    transform: rotate(-0.2deg);
+
     transform-origin: 0 0;
     z-index: 6;
 }
@@ -887,7 +1047,7 @@
     background-color: var(--color-yellowgreen);
     width: 100%;
     height: 100%;
-    transform: rotate(-0.2deg);
+
     transform-origin: 0 0;
 }
 
@@ -957,7 +1117,7 @@
     width: 1.4px;
     position: relative;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
 }
 
 .frame-child6 {
@@ -969,28 +1129,37 @@
     left: 223px;
     overflow: hidden;
     flex-shrink: 0;
-    transform: rotate(-0.2deg);
+
     transform-origin: 0 0;
     z-index: 5;
 }
 
 .payment-services-child,
 .payment-subject-details {
-    width: 100%;
+
     position: absolute;
     margin: 0 !important;
     border: 3px solid var(--color-black);
     box-sizing: border-box;
 }
 
+.paymentoftuitionfees-inner {
+    position: relative;
+    /* Đảm bảo phần tử cha có position relative */
+}
+
 .payment-services-child {
+    position: absolute;
     height: 100%;
-    top: 0;
+    top: 200px;
     right: 3.6px;
     bottom: 6px;
     left: 0;
     background-color: #F3F3F3;
+    z-index: -1;
+    /* Đặt độ ưu tiên thấp hơn */
 }
+
 
 .payment-subject-details {
     height: calc(100% - 5.1px);
@@ -1163,7 +1332,7 @@
     flex: 1;
     position: relative;
     max-height: 100%;
-    transform: rotate(-0.2deg);
+
     z-index: 1;
 }
 
@@ -1211,7 +1380,7 @@
     bottom: -67.4px;
     overflow: hidden;
     flex-shrink: 0;
-    transform: rotate(-0.2deg);
+
     z-index: 2;
 }
 
@@ -1264,7 +1433,7 @@
 .m-hc-ph,
 .payment-details-container {
     position: relative;
-    transform: rotate(-0.2deg);
+
     z-index: 1;
 }
 
@@ -1318,7 +1487,7 @@
     height: 42px;
     position: relative;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
     z-index: 1;
 }
 
@@ -1462,7 +1631,7 @@
 
 .fee-details-frame-inner {
     align-self: stretch;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 0 var(--padding-12xs);
 }
 
@@ -1487,14 +1656,13 @@
 }
 
 .frame-parent {
-    width: 1535px;
+    width: 1900px;
     flex-direction: column;
-    gap: 25px 0;
-    max-width: 107%;
+    max-width: 100%;
 }
 
 .paymentoftuitionfees-inner {
-    align-self: stretch;
+    align-self: center;
     flex-direction: row;
     padding: 0;
     box-sizing: border-box;
@@ -1509,7 +1677,7 @@
 .rectangle-shape-for-group-child {
     position: relative;
     object-fit: contain;
-    transform: rotate(-0.2deg);
+
     cursor: pointer;
 }
 
@@ -1541,7 +1709,7 @@
     flex: 1;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: space-between;
     max-width: 100%;
     gap: var(--gap-xl);
@@ -1556,12 +1724,12 @@
 }
 
 .payment-service-name-label {
-    width: 1326px;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0 var(--padding-sm) 0 0;
-    max-width: 100%;
-    flex-shrink: 0;
+    margin-top: 40px;
+    position: absolute;
+
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1300px;
 }
 
 .paymentoftuitionfees {
@@ -1571,9 +1739,8 @@
     overflow: hidden;
     flex-direction: column;
     align-items: center;
-    padding: 0 0 var(--padding-base) var(--padding-9xs);
     gap: 345px 0;
-    transform: rotate(0.2deg);
+
     transform-origin: 0 0;
     letter-spacing: normal;
     text-align: center;

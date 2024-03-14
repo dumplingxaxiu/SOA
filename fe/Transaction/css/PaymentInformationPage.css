@@ -5,6 +5,32 @@
     line-height: 30px;
 }
 
+.pay-button-frame {
+    background-color: #4CAF50;
+    /* Màu nền */
+    color: white;
+    /* Màu chữ */
+    padding: 12px 24px;
+    /* Kích thước */
+    font-size: 16px;
+    /* Cỡ chữ */
+    border-radius: 5px;
+    /* Bo góc */
+    cursor: pointer;
+    /* Hình con trỏ khi di chuột */
+    transition: background-color 0.3s;
+    /* Hiệu ứng hover */
+}
+
+.pay-button-frame:hover {
+    background-color: #45a049;
+    /* Màu nền khi di chuột qua */
+}
+
+
+
+
+
 .thng-tin-hc {
     width: 303px;
     font-weight: 800;
@@ -117,15 +143,15 @@
 .frame-container {
     width: 825px;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: ce;
     gap: 80px 0;
 }
 
 .f-r-a-m-e-payment-info {
-    width: 1179px;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     padding: 0 var(--padding-xl);
     box-sizing: border-box;
@@ -157,7 +183,7 @@
 .somethingsomethingsomethingsom1 {
     margin: 0;
     align-self: stretch;
-    height: 292px;
+    height: 280px;
     font-size: inherit;
     font-weight: 700;
     font-family: inherit;
@@ -236,17 +262,6 @@
     z-index: 1;
 }
 
-.pay-button-frame {
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    height: 88px;
-    width: 308px;
-    position: relative;
-    white-space: nowrap;
-}
-
 .v-n-d-text-frame {
     align-self: stretch;
     display: flex;
@@ -301,7 +316,7 @@
 .frame-with-sliders {
     align-self: stretch;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 0;
     max-width: 100%;
     text-align: right;
@@ -311,12 +326,13 @@
 }
 
 .paymentinformationpage {
-    width: 100%;
+    width: 1900px;
+    background-color: #45a049;
+    margin: 0 auto;
     position: relative;
-    background-color: var(--secondary-white);
     overflow: hidden;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 69px var(--padding-7xl) var(--padding-3xl) 0;
     gap: 120px 0;
     letter-spacing: normal;

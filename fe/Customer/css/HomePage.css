@@ -1,3 +1,17 @@
+.frame-wrapper {
+    margin-left: 20px;
+    width: 20px;
+    /* Đặt kích thước chiều rộng */
+    height: 20px;
+    /* Đặt kích thước chiều cao */
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    /* Đường viền 2px màu trắng */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* Bóng màu đen với độ mờ 0.5 */
+}
+
 .bankinging {
     width: 1265.1px;
     position: absolute;
@@ -386,7 +400,7 @@
 }
 
 .ellipse {
-    top: 159.7px;
+    top: 0px;
     left: 987.9px;
     border-radius: 50%;
     background-color: var(--color-gray-600);
@@ -402,12 +416,13 @@
 }
 
 .ellipse1 {
+    text-align: center;
+    color: #dee9de;
     top: 159.7px;
-    left: 703.7px;
-    border-radius: 50%;
-    background-color: #c1cbc3;
-    width: 36.5px;
-    height: 36.4px;
+    left: 329.7px;
+    background-color: rgba(220, 229, 221, 0);
+    width: 800px;
+    height: 100px;
 }
 
 .line-icon2 {
@@ -939,8 +954,6 @@
     height: 746px;
     justify-content: flex-end;
     max-width: 100%;
-
-
 }
 
 .fintech,
@@ -949,7 +962,6 @@
     display: flex;
     justify-content: flex-start;
     box-sizing: border-box;
-
 }
 
 .fintech {

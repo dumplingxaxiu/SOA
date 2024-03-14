@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/global.css" />
-    <link rel="stylesheet" href="./QuaTrinhThanhToan_css/TransactionHistory.css" />
+    <link rel="stylesheet" href="../Transaction/css/global.css" />
+    <link rel="stylesheet" href="../Transaction/css/TransactionHistory.css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;800&display=swap" />
@@ -24,7 +24,8 @@
                     <div class="side-menu-child"></div>
                     <div class="status-indicator">
                         <div class="mar-container">
-                            <div class="success-container"></div>
+                            <img class="success-image" src="../Customer/images/logo.jpg" alt="Success">
+
                             <div class="logo">Logo</div>
                         </div>
                     </div>
@@ -152,14 +153,18 @@
         <main class="frame-january">
             <section class="button-previous">
                 <div class="header">
-                    <img class="notification-icon" alt="" src="./public/notification.svg" />
 
-                    <div class="frame-febsuccess">
-                        <div class="welcome-back">Welcome back,</div>
-                        <input class="user01" placeholder="user01" type="text" />
+                    <div class="ff">
+                        <div class="frame-febsuccess">
+                            <div class="welcome-back">Welcome back,</div>
+                            <p>USER</p>
 
-                        <div class="arrow-down-2"></div>
+                            <div class="arrow-down-2"></div>
+                        </div>
+                        <div><img class="notification-icon" alt="" src="../Customer/images/avatar_user.jpg" /></div>
+
                     </div>
+
                 </div>
             </section>
             <section class="textofpages">
@@ -219,148 +224,45 @@
             </section>
             <footer class="frame-dividers4">
                 <div class="frame-dividers5">
-                    <div class="order-i-d-frame">
-                        <button class="date-frame">
-                            <div class="order-id">Order ID</div>
-                        </button>
-                        <button class="date-frame1">
-                            <div class="date">Date</div>
-                        </button>
-                        <div class="amount">
-                            <button class="status-frames">
-                                <div class="ammount">Ammount</div>
-                            </button>
-                            <button class="status-frames1">
-                                <div class="xxxxx2">xxxxx</div>
-                            </button>
-                        </div>
-                        <div class="status">Status</div>
-                    </div>
-                    <div class="status-frames2">
-                        <input class="month-button" placeholder="#15267" type="text" />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        <div class="month-button1">
-                            <div class="mar-1-2023">Mar 1, 2023</div>
-                        </div>
-                        <button class="month-button2">
-                            <div class="div34">18.000.000</div>
-                        </button>
-                        <div class="month-button3">
-                            <div class="div35">1</div>
-                        </div>
-                        <input class="month-button4" placeholder="Success" type="text" />
-                    </div>
-                    <div class="success-frame">
-                        <div class="frame-parent1">
-                            <div class="frame-parent2">
-                                <div class="parent">
-                                    <div class="div36">#153587</div>
-                                    <div class="div37">#12436</div>
-                                </div>
-                                <div class="per-page-parent">
-                                    <div class="per-page">
-                                        <div class="jan-26-2023">Jan 26, 2023</div>
-                                        <div class="feb-12-2033">Feb 12, 2033</div>
-                                    </div>
-                                    <div class="per-page1">
-                                        <div class="div38">18.000.000</div>
-                                        <div class="div39">10.000.000</div>
-                                    </div>
-                                    <div class="per-page2">
-                                        <div class="div40">3</div>
-                                        <div class="div41">1</div>
-                                    </div>
-                                    <div class="per-page3">
-                                        <div class="success">Success</div>
-                                        <div class="success1">Success</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jan-frame">
-                                <div class="success2">#12436</div>
-                                <div class="feb-12-2033-parent">
-                                    <div class="feb-12-20331">Feb 12, 2033</div>
-                                    <div class="next-month-label">
-                                        <div class="div42">10.000.000</div>
-                                    </div>
-                                    <div class="next-month-label1">
-                                        <div class="div43">1</div>
-                                    </div>
-                                    <div class="success3">Success</div>
-                                </div>
-                            </div>
-                            <div class="jan-frame1">
-                                <div class="div44">#12436</div>
-                                <div class="feb-12-2033-group">
-                                    <div class="feb-12-20332">Feb 12, 2033</div>
-                                    <div class="next-month-label2">
-                                        <div class="div45">10.000.000</div>
-                                    </div>
-                                    <div class="next-month-label3">
-                                        <div class="div46">1</div>
-                                    </div>
-                                    <div class="success4">Success</div>
-                                </div>
-                            </div>
-                            <div class="january">
-                                <div class="prev-month-button">#12436</div>
-                                <div class="current-month-label">
-                                    <div class="feb-12-20333">Feb 12, 2033</div>
-                                    <div class="next-month-label4">
-                                        <div class="div47">10.000.000</div>
-                                    </div>
-                                    <div class="next-month-label5">
-                                        <div class="div48">1</div>
-                                    </div>
-                                    <div class="success5">Success</div>
-                                </div>
-                            </div>
-                            <div class="parent-frame-parent">
-                                <div class="parent-frame">
-                                    <div class="inner-frame">#16907</div>
-                                    <div class="pending-status-label">
-                                        <div class="pagination-button">
-                                            <div class="pagination-button-child"></div>
-                                            <div class="alt-arrow-left">10</div>
-                                            <img class="bold-arrows-alt-arrow-left1" alt=""
-                                                src="./public/bold--arrows--alt-arrow-left@2x.png" />
-                                        </div>
-                                        <div class="per-page4">per page</div>
-                                    </div>
-                                </div>
-                                <div class="march-frame">
-                                    <div class="march-18-2033">March 18, 2033</div>
-                                    <div class="march-title">10.000.000</div>
-                                </div>
-                                <div class="empty-frame">
-                                    <div class="children-containers">1</div>
-                                    <div class="inner-frame-content">
-                                        <div class="pending-status">
-                                            <div class="pending1">Pending</div>
-                                        </div>
-                                        <div class="of-pages-display">
-                                            <div class="pagination-button1">
-                                                <div class="pagination-button-item"></div>
-                                                <div class="prev-next-buttons">1</div>
-                                                <img class="bold-arrows-alt-arrow-left2" alt=""
-                                                    src="./public/bold--arrows--alt-arrow-left-1@2x.png" />
-                                            </div>
-                                            <div class="of-pages">
-                                                <div class="of-1-pages">of 1 pages</div>
-                                            </div>
-                                            <div class="bold-arrows1">
-                                                <img class="bold-arrows-alt-arrow-left3" alt=""
-                                                    src="./public/bold--arrows--alt-arrow-left-2.svg" />
+                            <script>
 
-                                                <img class="bold-arrows-alt-arrow-righ" loading="lazy" alt=""
-                                                    src="./public/bold--arrows--alt-arrow-right.svg" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                // Mảng chứa dữ liệu của các đơn hàng
+                                const orders = [
+                                    { id: '#153587', date: 'Jan 26, 2023', amount: '18.000.000', status: 'Success' },
+                                    { id: '#12436', date: 'Feb 12, 2033', amount: '10.000.000', status: 'Success' },
+                                    { id: '#654321', date: 'Mar 15, 2023', amount: '25.000.000', status: 'Pending' },
+                                    { id: '#987654', date: 'Apr 3, 2023', amount: '12.000.000', status: 'Rejected' },
+                                    { id: '#789456', date: 'May 8, 2023', amount: '30.000.000', status: 'Success' },
+                                    { id: '#852963', date: 'Jun 21, 2023', amount: '20.000.000', status: 'Pending' },
+                                    { id: '#741852', date: 'Jul 9, 2023', amount: '15.000.000', status: 'Success' },
+                                    { id: '#369258', date: 'Aug 17, 2023', amount: '22.000.000', status: 'Pending' },
+                                    { id: '#456123', date: 'Sep 28, 2023', amount: '28.000.000', status: 'Success' },
+                                    { id: '#951753', date: 'Oct 5, 2023', amount: '19.000.000', status: 'Pending' }
+                                ];
+
+                                for (let i = 0; i < orders.length; i++) {
+                                    const order = orders[i];
+                                    document.write(`<tr>
+                                        <td>${order.id}</td>
+                                        <td>${order.date}</td>
+                                        <td>${order.amount}</td>
+                                        <td>${order.status}</td>
+                                    </tr>`);
+                                }
+                            </script>
+                        </tbody>
+                    </table>
                 </div>
             </footer>
         </main>
@@ -370,10 +272,12 @@
         var groupButton = document.getElementById("groupButton");
         if (groupButton) {
             groupButton.addEventListener("click", function (e) {
-                // Please sync "HomePage" to the project
+                window.location.href = "../Customer/HomePage.html";
             });
         }
     </script>
+
+
 </body>
 
 </html>

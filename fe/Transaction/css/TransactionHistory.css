@@ -15,14 +15,14 @@
     z-index: 2;
 }
 
-.success-container {
+.success-image {
     height: 32.9px;
     width: 32.9px;
     border-radius: 10.67px;
-    background-color: #c6c6c6;
     overflow: hidden;
     flex-shrink: 0;
 }
+
 
 .logo {
     letter-spacing: 0.01em;
@@ -650,7 +650,7 @@
 }
 
 .welcome-back {
-    width: 211px;
+    width: auto;
     position: relative;
     font-weight: 500;
     display: flex;
@@ -692,15 +692,36 @@
     box-sizing: border-box;
 }
 
-.frame-febsuccess {
-    flex: 1;
+.ff {
+    display: flex;
+    /* Sử dụng flexbox */
+    align-items: center;
+    /* Căn giữa các phần tử theo chiều dọc */
+}
+
+/* Thêm CSS cho phần hình ảnh */
+.ff {
+    border-radius: 50%;
+    /* Bo tròn hình ảnh */
+    margin-right: 10px;
+    /* Khoảng cách giữa hình ảnh và phần nội dung */
     border-radius: 8.19px;
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid #e8eff7;
+    border: 1px solid #000000;
+}
+
+.notification-icon {
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #000000;
+}
+
+
+.frame-febsuccess {
+    flex: 1;
     flex-direction: column;
     align-items: flex-start;
     padding: var(--padding-5xs);
-    min-width: 171px;
 }
 
 .button-previous,
@@ -710,7 +731,6 @@
 }
 
 .header {
-    flex: 1;
     background-color: var(--secondary-white);
     border: 0.9px solid var(--color-black);
     overflow: hidden;
@@ -1822,7 +1842,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
     padding: 0 0 var(--padding-14xl);
     gap: 1px 0;

@@ -17,12 +17,14 @@
 }
 
 .ellipse-shape {
-    width: 146px;
+    width: 131px;
     height: 131px;
     position: relative;
     border-radius: 50%;
-    background-color: var(--color-gainsboro-300);
+    /*background-color: var(--color-gainsboro-300);*/
+    /* Bạn có thể loại bỏ background-color nếu không muốn màu nền */
 }
+
 
 .thanh-ton-thnh {
     margin: 0;
@@ -86,9 +88,13 @@
 }
 
 .container-frame {
-    width: 498px;
+    display: flex;
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    width: 100%;
+    margin: auto;
     flex-direction: row;
-    align-items: flex-start;
 }
 
 .tn-ngi-th,
@@ -221,7 +227,7 @@
 }
 
 .details-frame-icon {
-    height: 8px;
+    height: 1px;
     flex: 1;
     position: relative;
     max-width: 100%;
@@ -475,16 +481,13 @@
 .variable-account-inner {
     flex: 1;
     flex-direction: column;
-    padding: var(--padding-53xl) 0 0;
     box-sizing: border-box;
     min-width: 129px;
 }
 
 .variable-account {
-    width: 399px;
+    width: 199px;
     flex-direction: row;
-    gap: 0 91px;
-    max-width: 100%;
 }
 
 .abczxc-label,
@@ -497,7 +500,7 @@
 }
 
 .abczxc-label {
-    align-self: stretch;
+    align-self: center;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -525,7 +528,7 @@
 
 .account-receiver-frame {
     align-self: stretch;
-    align-items: flex-start;
+    align-items: center;
     gap: 23px 0;
     max-width: 100%;
     font-size: var(--font-size-5xl);
@@ -533,16 +536,19 @@
 
 
 .transactionresultpage {
-    width: 100%;
+    width: 1000px;
+    margin: 0 auto;
     position: relative;
     background-color: var(--secondary-white);
     overflow: hidden;
     align-items: center;
-    padding: 97px var(--padding-9xl) 67px 116px;
     box-sizing: border-box;
     gap: 49px 0;
     letter-spacing: normal;
     font-size: var(--font-size-17xl);
+    background-color: #289c3d;
+    border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 1050px) {
