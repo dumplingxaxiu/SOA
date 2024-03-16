@@ -68,9 +68,9 @@ class TransactionController {
     //lam ham delete, update o day de bi conflict voi balance cua banking account
     async deleteTransaction(req,res,next){
         const customerID = req.user.id
-        const transactionID =req. //chua có transactionID
+        const transactionID = "id" //chua có transactionID
         try {
-            const transaction = await Transaction.findById(transactionID);
+            const transaction = await Transaction.findById(transactionID)
             if (!transaction) {
                 return res.json({ success: false, message: "Khong tìm thấy transaction id" });
             }

@@ -1,17 +1,33 @@
 const bcrypt = require("bcrypt");
-const Account = require("./app/models/Account.js");
+const Role = require("./app/models/Role.js");
+const Customer = require("./app/models/Customer.js");
 async function createAdminAccount() {
-    let acc = await Account.findOne({ role: "admin" });
-    if (!acc) {
-        const data = {
-            username: "admin",
-            role: "admin",
-            password: "admin",
+    let admin = await Account.findOne({ role: "admin" });
+    if (!admin) {
+        // Tạo data cho customer model
+        const customerData = {
+            userID: "0",
+            citizenID: "0",
+            fullName: "Admin",
+            bankAccountNumber: "0",
+            phoneNumber: "0",
+            email: "admin@adminmail.com",
+            userName: "admin" 
         };
-        const passwordHash = bcrypt.hashSync(data.password, 10);
-        data.password = passwordHash;
-        const account = new Account(data);
-        await account.save();
+        const passwordHash = bcrypt.hashSync(customerData.password, 10);
+        customerData.password = passwordHash;
+        const customer = new Customer(customerData);
+        await customer.save();
+
+        //Tạo data cho Role
+        const roleData = {
+            userID: customerData.userID,
+            userName: customerData.userName,
+            role: 0
+        }
+        const role = new Role(roleData)
+        await role.save();
+
         console.log("Admin account was initialized");
     }
 }

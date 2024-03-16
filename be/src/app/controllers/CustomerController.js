@@ -1,63 +1,59 @@
 const Customer = require('../models/Customer');
 
 class CustomerController {
-    async index(req, res, next){
-        res.json("Customer API")
-    }
-    async getCustomer(req, res, next) {
-        const customerID = customer.customerID
+    async GetAllCustomers(req, res, next){
         try {
             const customers = await Customer.find();
             return res.json({ success: true, customers: customers });
         }
         catch (error) {
-            return res.json({ success: false, message: "Error!" });
+            return res.json({ success: false, message: "Error in get all!" });
         }
     }
-    async getCustomerBySlug(req, res, next){
-        const { slug } = req.params
-        const customerID = req.user.id
+    async getCurrentCustomer(req, res, next) {
+        const customerID = req.user.customerID
         try {
-            const customer = await Customer.findOne({customerID:id, slug: slug });
+            const customers = await Customer.find({userID:customerID});
             return res.json({ success: true, customer: customer });
-          } catch (error) {
-            return res.json({ success: false, message: "Error!" });
-          }
+        }
+        catch (error) {
+            return res.json({ success: false, message: "Error in get current!" });
+        }
     }
+
     async addNewCustomer(req, res, next) {
-        const { fullName, phoneNum, email, username, password } = req.body;
-        if (!fullName || !phoneNum || !email || !username || !password) {
+        const { fullName, email, userName, password } = req.body;
+        if (!fullName || !email || !userName || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
             const customer = new Customer({
-                fullName,
-                phoneNum, 
+                fullName, 
                 email, 
                 username, 
                 password
             })
             await customer.save();
-            return res.json({ success: true, message: "Add new customer successfully!", data });
+            return res.json({ success: true, message: "Add new customer successfully!", data: customer });
         }
         catch (error) {
-            return res.json({ success: false, message: "Error!" });
+            return res.json({ success: false, message: "Error in add new!" });
         }
     }
 
     async updateCustomer(req, res, next) {
         const { fullName, phoneNum, email, username, password } = req.body;
-        if (!fullName || !phoneNum || !email || !username || !passwor) {
+        if (!fullName || !phoneNum || !email || !username || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
-            const customer = await Customer.findByIdAndUpdate(
-                customerID, 
+            const customer = await Customer.findOneAndUpdate(
+                {customerID: req.user.userID}, 
                 {fullName, 
-                    phoneNum, 
-                    email, 
-                    username, 
-                    password});
+                phoneNum, 
+                email, 
+                username, 
+                password});
 
             return res.json({ 
                  success: true,
@@ -66,23 +62,23 @@ class CustomerController {
                 });
         }
         catch (error) {
-            return res.json({ success: false, message: "Error!" });
+            return res.json({ success: false, message: "Error in update!" });
         }
     }
 
     async deleteCustomer(req, res, next) {
-        const { id } = req.body;
+        const { id } = req.user.userID;
         try {
           if (!id) {
             return res.json({ success: false, message: "Missing id!" });
           }
-          await Customer.findByIdAndRemove(id);
+          await Customer.findOneAndRemove({customerID: id});
           return res.json({ 
             success: true, 
-            message: "Product deleted",
+            message: "Customer deleted!",
             product_id: id });
         } catch (error) {
-          return res.json({ success: false, message: "Error!" });
+          return res.json({ success: false, message: "Error in delete!" });
         }
       }
 }
