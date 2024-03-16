@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 
 // Định nghĩa schema của collection "Student"
 const studentSchema = new mongoose.Schema({
-    studentid: {
+    studentID: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        default: () => {
+            return Math.floor(100000000 + Math.random () * 900000000).toString();
+        }
     },
     fullname: {
         type: String,
