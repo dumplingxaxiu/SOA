@@ -7,7 +7,7 @@ const customerSchema = new mongoose.Schema({
         required: true,
         default: () => {
             // Tạo userID ngẫu nhiên
-            return Math.random().toString(16).substr(2, 8)
+            return Math.random().toString(16).substr(2, 8);
         }
     },
     citizenID: {

@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const Role = require("./app/models/Role.js");
 const Customer = require("./app/models/Customer.js");
 async function createAdminAccount() {
-    let admin = await Account.findOne({ role: "admin" });
+    let admin = await Role.findOne({ role: "admin" });
     if (!admin) {
         // Tạo data cho customer model
         const customerData = {

@@ -21,39 +21,41 @@ class CustomerController {
         }
     }
 
-    async addNewCustomer(req, res, next) {
+    async AddNewCustomer(req, res, next) {
         const { fullName, email, userName, password } = req.body;
         if (!fullName || !email || !userName || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
             const customer = new Customer({
-                fullName, 
-                email, 
-                username, 
-                password
+                fullName: fullName, 
+                email: email, 
+                userName: userName, 
+                password: password
             })
             await customer.save();
             return res.json({ success: true, message: "Add new customer successfully!", data: customer });
+
+
         }
         catch (error) {
             return res.json({ success: false, message: "Error in add new!" });
         }
     }
 
-    async updateCustomer(req, res, next) {
-        const { fullName, phoneNum, email, username, password } = req.body;
-        if (!fullName || !phoneNum || !email || !username || !password) {
+    async UpdateCustomer(req, res, next) {
+        const { fullName, phoneNum, email, userName, password } = req.body;
+        if (!fullName || !phoneNum || !email || !userName || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
             const customer = await Customer.findOneAndUpdate(
                 {customerID: req.user.userID}, 
-                {fullName, 
-                phoneNum, 
-                email, 
-                username, 
-                password});
+                {fullName: fullName, 
+                phoneNum: phoneNum, 
+                email: email, 
+                userName: userName, 
+                password: password});
 
             return res.json({ 
                  success: true,
@@ -66,7 +68,7 @@ class CustomerController {
         }
     }
 
-    async deleteCustomer(req, res, next) {
+    async DeleteCustomer(req, res, next) {
         const { id } = req.user.userID;
         try {
           if (!id) {

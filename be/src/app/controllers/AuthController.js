@@ -8,7 +8,7 @@ class AuthController {
     //Lấy data của user hiện tại
     let userID = req.user.userID;
     try {
-      me = await Customer.findOne({ userID: userID }).select("-password");
+      me = await Customer.findOne({ userID: userID }).select("-password-citizenID");
 
       return res.json({
         success: true,
@@ -16,23 +16,22 @@ class AuthController {
         user: me,
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ success: false, message: error.message });
     }
   }
 
   async login(req, res, next) {
     //Login handle
-    const { username, password } = req.body;
+    const { userName, password } = req.body;
     
-    if (!username || !password) {
+    if (!userName || !password) {
       return res.json({
         success: false,
         message: "Require username or password!",
       });
     }
     try {
-      const account = await Customer.findOne({ userName: username });
+      const account = await Customer.findOne({ userName: userName });
       if (!account) {
         return res.json({
           success: false,
@@ -63,6 +62,5 @@ class AuthController {
       return res.json({ success: false, message: "Error in auth login!" });
     }
   }
-  //Đăng ký ở đây nhưng giữa kỳ không yêu cầu
 }
 module.exports = new AuthController();

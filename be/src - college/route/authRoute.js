@@ -5,7 +5,7 @@ const checkLogin = require("../app/middleware/checkLogin");
 
 router.get("/", checkLogin, AuthController.fetchData);
 router.post("/login", AuthController.login);
-router.post("/register", AuthController.register);
+//router.post("/register", AuthController.register);
 //router.post("/update", checkLogin, AuthController.updateUserData);
 
 module.exports = router;

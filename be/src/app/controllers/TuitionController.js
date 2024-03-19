@@ -3,7 +3,7 @@ const Tuition = require('../models/Tuition');
 
 class TuitionController {
     async checkTuition(req,res,next) {
-        const studentID = req. //chưa có student id
+        const studentID = "" //chưa có student id
         try {
             const tuition = await Tuition.findOne({ StudentID: studentID });
             if (tuition) {
@@ -19,10 +19,11 @@ class TuitionController {
         } catch (error) {
             return next(error);
         }
+    }
 }
 class BankAccount {
     async checkAccountBalance(req,res,next){
-        const studentid = req. //chua có studentid
+        const studentid = "" //chua có studentid
         const customerid = req.user.customerid ;
          try {
             const tuitionAmount = tuition.tuition;

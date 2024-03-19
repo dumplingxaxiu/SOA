@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
-const transactionHistorySchema = new mongoose.Schema({
+const transactionSchema = new mongoose.Schema({
     TransactionID: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        default: () => {
+            return 'T' + Math.floor(100000000 + Math.random () * 900000000).toString();
+        }
     },
     SenderID: {
         type: mongoose.Schema.Types.ObjectId,
@@ -40,6 +43,6 @@ const transactionHistorySchema = new mongoose.Schema({
 });
 
 // Tạo model từ schema và xuất nó
-const TransactionHistory = mongoose.model('TransactionHistory', transactionHistorySchema);
+const TransactionHistory = mongoose.model('Transaction', transactionSchema);
 
-module.exports = TransactionHistory;
+module.exports = Transaction;
