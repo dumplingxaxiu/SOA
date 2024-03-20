@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Customer = require("../models/Customer");
 const credentials = require("../../credentials");
+const Role = require("../models/Role");
 
 class AuthController {
   async fetchData(req, res, next) {
@@ -10,7 +11,8 @@ class AuthController {
 
     try {
       const me = await Customer.findOne({ userID: userID }).select("-password-citizenID");
-
+      const role = await Role.findOne({ userID: me.userID})
+      me["role"] = role.role;
       return res.json({
         success: true,
         message: "Get current user successfully!",

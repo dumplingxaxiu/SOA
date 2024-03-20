@@ -1,4 +1,6 @@
 const Customer = require('../models/Customer');
+const Role = require('../models/Role');
+const bcrypt = require('bcrypt')
 
 class CustomerController {
     async GetAllCustomers(req, res, next){
@@ -10,36 +12,34 @@ class CustomerController {
             return res.json({ success: false, message: "Error in get all!" });
         }
     }
-    async getCurrentCustomer(req, res, next) {
-        const customerID = req.user.customerID
-        try {
-            const customers = await Customer.find({userID:customerID});
-            return res.json({ success: true, customer: customer });
-        }
-        catch (error) {
-            return res.json({ success: false, message: "Error in get current!" });
-        }
-    }
-
+    //Khi nào sửa db thì tháo comment lệnh save
     async AddNewCustomer(req, res, next) {
         const { fullName, email, userName, password } = req.body;
         if (!fullName || !email || !userName || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
+            const hashedPassword = bcrypt.hashSync(password, 10);
             const customer = new Customer({
                 fullName: fullName, 
                 email: email, 
                 userName: userName, 
-                password: password
+                password: hashedPassword
             })
-            await customer.save();
+            //await customer.save();
+            console.log(customer)
+            const role = new Role({
+                userID: customer.userID,
+                userName: customer.userName
+            })
+            //await role.save();
+            console.log(role)
             return res.json({ success: true, message: "Add new customer successfully!", data: customer });
 
 
         }
         catch (error) {
-            return res.json({ success: false, message: "Error in add new!" });
+            return res.json({ success: false, message: "Error in add new!\n" + error.message });
         }
     }
 
@@ -49,13 +49,14 @@ class CustomerController {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
+            const hashedPassword = bcrypt.hashSync(password, 10);
             const customer = await Customer.findOneAndUpdate(
-                {customerID: req.user.userID}, 
+                {userID: req.user.userID}, 
                 {fullName: fullName, 
                 phoneNum: phoneNum, 
                 email: email, 
                 userName: userName, 
-                password: password});
+                password: hashedPassword});
 
             return res.json({ 
                  success: true,
@@ -74,11 +75,11 @@ class CustomerController {
           if (!id) {
             return res.json({ success: false, message: "Missing id!" });
           }
-          await Customer.findOneAndRemove({customerID: id});
+          await Customer.findOneAndRemove({userID: id});
           return res.json({ 
             success: true, 
             message: "Customer deleted!",
-            product_id: id });
+            user_id: id });
         } catch (error) {
           return res.json({ success: false, message: "Error in delete!" });
         }
