@@ -6,9 +6,10 @@ const credentials = require("../../credentials");
 class AuthController {
   async fetchData(req, res, next) {
     //Lấy data của user hiện tại
-    let userID = req.user.userID;
+    let userID = req.user.data.userID;
+
     try {
-      me = await Customer.findOne({ userID: userID }).select("-password-citizenID");
+      const me = await Customer.findOne({ userID: userID }).select("-password-citizenID");
 
       return res.json({
         success: true,
@@ -48,7 +49,6 @@ class AuthController {
       const payload = {
         data: account
       }
-      console.log(payload)
       const token = jwt.sign(payload, credentials.secret_key, {
         expiresIn: "12h",
       });
@@ -59,7 +59,7 @@ class AuthController {
         user: payload.data,
       });
     } catch (error) {
-      return res.json({ success: false, message: "Error in auth login!" });
+      return res.json({ success: false, message: error.message });
     }
   }
 }

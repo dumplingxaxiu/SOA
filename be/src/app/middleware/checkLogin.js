@@ -9,7 +9,7 @@ async function checkLogin(req, res, next) {
   try {
     let decoded = jwt.verify(token, secret_key);
     const user = decoded;
-    if (user && user.is_verify) {
+    if (user) {
       req.user = user;
       next();
     } else {
