@@ -39,6 +39,10 @@ const transactionSchema = new mongoose.Schema({
     TransactionTime: {
         type: Date,
         default: Date.now
+    },
+    TransactionState: {
+        type: Number,
+        default: 0 //-1 = cancelled, 0 = pending, 1 = succeeded
     }
 });
 

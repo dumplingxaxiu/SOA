@@ -2,10 +2,10 @@ const Customer = require("../models/Customer")
 const Transaction = require("../models/TransactionHistory")
 
 class TransactionController {
-    async getMyTransHistory(req, res, next) {
-        const customerID = req.user.id //chua biet thong tin login
+    async getMyTransactionHistory(req, res, next) {
+        const user = req.user.data
         try {
-            const transactions = await Transaction.find({ customerID })
+            const transactions = await Transaction.find({$or:[{senderID: user.bankAccountNumber},{receiverID: user.bankAccountNumber}]})
             res.json({
                 success: true,
                 message: "Get Transaction History succeeded!",
@@ -15,70 +15,66 @@ class TransactionController {
             console.error("Error:", error);
             res.json({
                 success: false,
-                message: "Get Transaction History failed!"
+                message: "Get Transaction History failed!" + error.message
             })
         }
     }
-    async getTransactionBySlug(req, res, next){
-        const { slug } = req.params
-        try {
-            const transaction = await Transaction.findOne({ slug: slug });
-            return res.json({ 
-                success: true,
-                message: "Get transaction by slug succeeded!", 
-                transaction: transaction });
-          } catch (error) {
-            return res.json({ success: false, message: "Get transaction by slug failed!!" });
-          }
-    }
-    async addNewTransaction(req, res, next){
-        const senderName = req.body.sender.name //chua co input
-        const senderID = sender.id // chua co input
-        const receiverName = req.body.receiver.name //chua co input
-        const receiverID = req.body.receiver.id // chua co input
-        const amount = req.body.amount // chua co input
-        const type = req.body.type //chua co input
-        const content = req.body.content //chua co input
-        if(!sender || !receiver || !amount){
-            res.json({
-                success: false,
-                message: "Missing information"
-            })
+
+    async AddNewTransaction(req, res, next){
+        if(!(req.sender || req.receiver || req.context)){
+            return res.json({success: false, message: "Missing information!"})
         }
+        const sender = await Customer.find({bankAccountNumber: req.sender.senderID})
+        if(sender && sender.fullName == req.SenderName){
+            const isValidSender = 1    
+        }else{const isValidSender = 0}
+
+        const receiver = await Customer.find({bankAccountNumber: req.receiver.receiverID})
+        if(receiver && receiver.fullName == req.receiverName){
+            const isValidReceiver = 1    
+        }else{const isValidReceiver = 0}
+
+        if(!(isValidSender || isValidSender)){
+            return res.json({success: false, message: "Invalid Sender or Receiver!"})
+        }
+
+        if(sender.balance < req.context.amount){
+            return res.json({success: false, message: "Not enough balance to make transaction!"})
+        }
+
         try {
            const transaction = new Transaction({
-            senderID,
-            senderName,
-            receiverID,
-            receiverName,
-            amount,
-            content,
-            type,
+            SenderID: sender.bankAccountNumber,
+            SenderName: sender.fullName,
+            ReceiverID: receiver.bankAccountNumber,
+            ReceiverName: receiver.fullName,
+            TransactionAmount: detail.amount,
+            TransactionContent: detail.content,
+            TransactionType: detail.type,
            })
-           await transaction.save()
+           //await transaction.save()
            return res.json({
             success: true,
             message: "Create new transaction succeeded!",
             transaction: transaction
            })
         } catch (error) {
-            return res.json({success: false, message:"Create transaction failed!"})
+            return res.json({success: false, message:"Create transaction failed!" + error.message})
         }
     }
     //lam ham delete, update o day de bi conflict voi balance cua banking account
     async deleteTransaction(req,res,next){
-        const customerID = req.user.id
-        const transactionID = "id" //chua có transactionID
+        const transactionID = req.body.id //chua có transactionID
         try {
-            const transaction = await Transaction.findById(transactionID)
+            const transaction = await Transaction.find({TransactionID:transactionID})
             if (!transaction) {
                 return res.json({ success: false, message: "Khong tìm thấy transaction id" });
             }
             await transaction.remove();
             return res.json({ success: true, message: "Xóa transaction thành công" });
         } catch (error) {
-            console.error("Error:", error);
-            return res.json({ success: false, message: "Không xóa được transaction" });
+           
+            return res.json({ success: false, message: "Không xóa được transaction" + error.message});
         }
     }
 }
