@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const TransactionController = require("../app/controllers/TransactionController.js");
+const checkLogin = require("../app/middleware/checkLogin.js");
+const checkAdmin = require("../app/middleware/checkAdmin.js");
 
-router.get("/history", TransactionController.getMyTransactionHistory);
-router.post("/add", TransactionController.AddNewTransaction);
+router.get("/history",checkLogin, TransactionController.getMyTransactionHistory);
+router.post("/add",checkLogin, TransactionController.AddNewTransaction);
+router.put("/process",checkLogin,checkAdmin, TransactionController.ProcessTransaction)
 
 module.exports = router;

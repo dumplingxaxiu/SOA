@@ -1,5 +1,5 @@
 const Customer = require("../models/Customer")
-const Transaction = require("../models/TransactionHistory")
+const Transaction = require("../models/Transaction")
 
 class TransactionController {
     async getMyTransactionHistory(req, res, next) {
@@ -52,7 +52,7 @@ class TransactionController {
             TransactionContent: detail.content,
             TransactionType: detail.type,
            })
-           //await transaction.save()
+            await transaction.save()
            return res.json({
             success: true,
             message: "Create new transaction succeeded!",
@@ -63,8 +63,11 @@ class TransactionController {
         }
     }
     async ProcessTransaction(req, res, next){
+        const transactions = await Transaction.find({TransactionState: 0})
+        if(!transactions){
+            return res.json('No pending transaction!')
+        }
         try{
-            const transactions = await Transaction.find({TransactionState: 0})
             const message = ""
             transactions.forEach(async transaction => {
                 let sender = await Customer.find({bankAccountNumber: transaction.SenderID})

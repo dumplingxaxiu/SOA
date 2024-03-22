@@ -47,6 +47,6 @@ const transactionSchema = new mongoose.Schema({
 });
 
 // Tạo model từ schema và xuất nó
-const TransactionHistory = mongoose.model('Transaction', transactionSchema);
+const Transaction = mongoose.model('Transaction', transactionSchema);
 
 module.exports = Transaction;
