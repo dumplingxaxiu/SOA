@@ -5,7 +5,7 @@ class TransactionController {
     async getMyTransactionHistory(req, res, next) {
         const user = req.user.data
         try {
-            const transactions = await Transaction.find({$or:[{senderID: user.bankAccountNumber},{receiverID: user.bankAccountNumber}]})
+            const transactions = await Transaction.find({$or:[{senderID: user.bankAccountNumber},{receiverID: user.bankAccountNumber}], TransactionState: 1})
             res.json({
                 success: true,
                 message: "Get Transaction History succeeded!",
@@ -60,6 +60,34 @@ class TransactionController {
            })
         } catch (error) {
             return res.json({success: false, message:"Create transaction failed!" + error.message})
+        }
+    }
+    async ProcessTransaction(req, res, next){
+        try{
+            const transactions = await Transaction.find({TransactionState: 0})
+            const message = ""
+            transactions.forEach(async transaction => {
+                let sender = await Customer.find({bankAccountNumber: transaction.SenderID})
+                let receiver = await Customer.find({bankAccountNumber: transaction.ReceiverID})
+    
+                if(sender.balance >= transaction.amount){
+                    sender.balance -= transaction.amount
+                    receiver.balance += transaction.amount
+                    transaction.TransactionState = 1
+                    await sender.save()
+                    await receiver.save()
+                    await transaction.save()
+                    message += "Proceed Transaction ID: " + transaction.TransactionID + " succeeded!"
+                }else{
+                    transaction.TransactionState = -1
+                    await transaction.save
+                    message += "Proceed Transaction ID: " + transaction.TransactionID + " failed!"
+                }
+            });
+
+            return res.json("Pending transaction proceeded!" + message)
+        }catch(error){
+            return res.json("Failed in proceed pending transaction! " + error.message)
         }
     }
     //lam ham delete, update o day de bi conflict voi balance cua banking account
