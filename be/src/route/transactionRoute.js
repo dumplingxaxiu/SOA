@@ -6,6 +6,6 @@ const checkAdmin = require("../app/middleware/checkAdmin.js");
 
 router.get("/history",checkLogin, TransactionController.getMyTransactionHistory);
 router.post("/add",checkLogin, TransactionController.AddNewTransaction);
-router.put("/process",checkLogin,checkAdmin, TransactionController.ProcessTransaction)
+router.put("/process",checkLogin, TransactionController.ProcessTransaction)
 
 module.exports = router;

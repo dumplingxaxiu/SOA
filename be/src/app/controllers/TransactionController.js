@@ -53,6 +53,7 @@ class TransactionController {
             TransactionType: detail.type,
            })
             await transaction.save()
+           await this.ProcessTransaction()
            return res.json({
             success: true,
             message: "Create new transaction succeeded!",
