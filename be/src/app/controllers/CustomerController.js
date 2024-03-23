@@ -26,14 +26,12 @@ class CustomerController {
                 userName: userName, 
                 password: hashedPassword
             })
-            //await customer.save();
-            console.log(customer)
+            await customer.save();
             const role = new Role({
                 userID: customer.userID,
                 userName: customer.userName
             })
-            //await role.save();
-            console.log(role)
+            await role.save();
             return res.json({ success: true, message: "Add new customer successfully!", data: customer });
 
 

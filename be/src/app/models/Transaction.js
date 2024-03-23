@@ -28,7 +28,7 @@ const transactionSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    TransactionContent: {
+    TransactionDetail: {
         type: String
     },
     TransactionType: {
