@@ -56,7 +56,7 @@ class TransactionController {
                 let sender = await Customer.find({bankAccountNumber: transaction.SenderID})
                 let receiver = await Customer.find({bankAccountNumber: transaction.ReceiverID})
     
-                if(sender.balance == transaction.amount){
+                if(sender.balance >= transaction.amount){
                     sender.balance -= transaction.amount
                     receiver.balance += transaction.amount
                     transaction.TransactionState = 1
