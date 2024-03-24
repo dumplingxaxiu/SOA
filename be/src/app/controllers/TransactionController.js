@@ -1,6 +1,7 @@
 const { json } = require("express");
 const Customer = require("../models/Customer")
-const Transaction = require("../models/Transaction")
+const Transaction = require("../models/Transaction");
+const { OTPSigned, OTPVerify } = require("../utils/otpUtils");
 
 class TransactionController {
     async getMyTransactionHistory(req, res, next) {
@@ -22,14 +23,16 @@ class TransactionController {
     }
 
     async AddNewTransaction(req, res, next){
-        const sender = req.user
+        const sender = req.user.data
         const receiverData = req.body.receiver
         const context = req.body.context
+
         if(!(sender || receiverData || context)){
             return res.json({success: false, message: "Missing information!"})
         }
 
-        const receiver = await Customer.find({bankAccountNumber: receiverData.receiverID})
+        const receiver = await Customer.findOne({bankAccountNumber: receiverData.receiverID})
+
         const isValidReceiver = (receiver, receiverData) => {
             return (receiver && receiver.fullName == receiverData.receiverName)
         }
@@ -38,7 +41,7 @@ class TransactionController {
             return res.json({success: false, message: "Invalid Receiver!"})
         }
 
-        if(sender.balance < context.transactionAmount){
+        if(sender.balance < context.transactionAmount || context.transactionAmount == 0){
             return res.json({success: false, message: "Not enough balance to make transaction!"})
         }
 
@@ -49,51 +52,94 @@ class TransactionController {
             ReceiverID: receiver.bankAccountNumber,
             ReceiverName: receiver.fullName,
             TransactionAmount: context.transactionAmount,
-            TransactionContent: context.transactionDetail,
+            TransactionDetail: context.transactionDetail,
             TransactionType: context.transactionType,
            })
-           const isSucceeded = async  (transaction) => {
-                let sender = await Customer.find({bankAccountNumber: transaction.SenderID})
-                let receiver = await Customer.find({bankAccountNumber: transaction.ReceiverID})
-    
-                if(sender.balance >= transaction.amount){
-                    sender.balance -= transaction.amount
-                    receiver.balance += transaction.amount
-                    transaction.TransactionState = 1
-                    //await sender.save()
-                    //await receiver.save()
-                    //await transaction.save()
-                    return {
-                        success: true,
-                        transaction: transaction
-                    }
-                }else{
-                    transaction.TransactionState = -1
-                    //await transaction.save
-                    return {
-                        success: false,
-                        transaction: transaction
-                    }
-                }
-           }
-           const transactionProcessData = await isSucceeded(transaction)
-           if(transactionProcessData.success){
-               return res.json({
-                   success: true,
-                   message: "Create new transaction succeeded!",
-                   transaction: transactionProcessData.transaction
-               })
-           }else{
+           await transaction.save()
+           const otpSigned = await OTPSigned()
+            req.session.signedOTP = {transactionID: transaction.TransactionID,otp: otpSigned}
+            console.log(req.session.signedOTP)
+            if(!req.session.signedOTP){
+                return res.json({
+                    success:false,
+                    message: "Cannot signed OTP"
+                })
+            }
+            
             return res.json({
-                success: false,
-                message: "Transaction failed!",
-                transaction: transactionProcessData.transaction
+                success: true,
+                message: "Create new transaction succeeded!",
+                transaction: transaction
             })
-           }
         } catch (error) {
             return res.json({success: false, message:"Create transaction failed!" + error.message})
         }
     }
+    async verifyTransaction(req, res, next){
+        const submittedOTP = req.body.submittedOTP
+        if(!submittedOTP){
+            return res.json({
+                success: false,
+                message: "Missing OTP"
+            })
+        }
+        const transaction = await Transaction.findOne({TransactionID: req.session.signedOTP.transactionID})
+        if(!transaction){
+            return res.json({
+                success: false,
+                message: "Cannot find transaction ID: " + req.session.signedOTP.transactionID
+            })
+        }
+        const verifyData = await OTPVerify(req.session.signedOTP,submittedOTP)
+        console.log(verifyData)
+        if(!verifyData.success == true){
+            return res.json(
+                verifyData
+            )
+        }else{
+            const sender = await Customer.findOne({bankAccountNumber: transaction.SenderID})
+            console.log(sender)
+            if(!sender){
+                return res.json({
+                    success: false,
+                    message: "Cannot find sender"
+                })
+            }
+            const receiver = await Customer.findOne({bankAccountNumber: transaction.ReceiverID})
+            if(!receiver){
+                return res.json({
+                    success: false,
+                    message: "Cannot find receiver"
+                })
+            }
+
+            if(sender.balance < transaction.TransactionAmount){
+                return res.json({
+                    success: false,
+                    message: "Not enough Balance"
+                })
+            }
+            try{
+                sender.balance -= transaction.TransactionAmount
+                await sender.save()
+                receiver.balance += transaction.TransactionAmount
+                await receiver.save()
+                transaction.TransactionState = 1
+                await transaction.save()
+
+                return res.json({
+                    success: true,
+                    message: "Transaction proceeded successfully!",
+                    transaction: transaction
+                })
+            }catch(error){
+                return res.json({success: false, message:"Verify transaction failed!" + error.message})
+            }
+
+        }
+        
+    }
+
     //lam ham delete, update o day de bi conflict voi balance cua banking account
     async deleteTransaction(req,res,next){
         const transactionID = req.body.id //chua có transactionID

@@ -11,8 +11,6 @@ class AuthController {
 
     try {
       const me = await Customer.findOne({ userID: userID }).select("-password-citizenID");
-      const role = await Role.findOne({ userID: me.userID})
-      me["role"] = role.role;
       return res.json({
         success: true,
         message: "Get current user successfully!",

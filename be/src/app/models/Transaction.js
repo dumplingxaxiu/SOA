@@ -10,26 +10,28 @@ const transactionSchema = new mongoose.Schema({
         }
     },
     SenderID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Customer'
+        type: String,
+        required: true
     },
     SenderName: {
-        type: String
+        type: String,
+        required: true
     },
     ReceiverID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Customer'
+        type: String,
+        required: true
     },
     ReceiverName: {
-        type: String
+        type: String,
+        required: true
     },
-    
     TransactionAmount: {
         type: Number,
         required: true
     },
     TransactionDetail: {
-        type: String
+        type: String,
+        required: true
     },
     TransactionType: {
         type: String,

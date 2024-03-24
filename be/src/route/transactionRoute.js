@@ -6,5 +6,5 @@ const checkAdmin = require("../app/middleware/checkAdmin.js");
 
 router.get("/history",checkLogin, TransactionController.getMyTransactionHistory);
 router.post("/add",checkLogin, TransactionController.AddNewTransaction);
-
+router.post("/verify", checkLogin, TransactionController.verifyTransaction)
 module.exports = router;
