@@ -18,91 +18,76 @@
 </head>
 
 <body>
-    <div class="announcementpage">
-        <div class="frame-group1">
-            <div class="main-frame">
-                <div class="first-frame">
-                    <div class="first-frame-child"></div>
-                    <div class="tt-c-thng">Tất cả thông báo</div>
-                </div>
-                <div class="first-frame1">
-                    <div class="first-frame-item"></div>
-                    <div class="thng-bo-quan">Thông báo quan trọng</div>
-                </div>
-                <div class="first-frame2">
-                    <div class="first-frame-inner"></div>
-                    <div class="thng-bo-nhc-container">
-                        <p class="thng-bo">Thông báo</p>
-                        <p class="nhc-nh-hc">nhắc nhở học phí</p>
-                    </div>
-                </div>
-                <div class="secondary-frame">
-                    <div class="dynamic-message">
-                        <div class="dynamic-message-child"></div>
-                        <div class="thng-bo-bin">Thông báo biến động</div>
-                    </div>
-                    <div class="background-rectangle">.....</div>
-                </div>
-                <div class="rectangle-parent9" id="groupContainer">
-                    <div class="frame-child13"></div>
-                    <div class="second-icon-ellipse">Back</div>
-                </div>
-            </div>
-        </div>
-        <div class="border-frame">
-            <div class="inner-frame">
-                <div class="title-frame">
-                    <div class="title-frame-child"></div>
-                    <div class="reminder-frame">
-                        <div class="status-rectangle">
-                            <div class="background-shape"></div>
-                            <div class="info-circle">
-                                <div class="message-text">
-                                    <div class="border-text"></div>
-                                    <input class="subtext-rectangle" placeholder="32" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <input class="notif-frame" type="text" />
-                </div>
-                <div class="container-frame">
-                    <div class="content-frame">
-                        <div class="content-frame-child"></div>
-                        <div class="notification-frame">
-                            <div class="dynamic-message1"></div>
-                            <div class="rectangle-shape2">
-                                <div class="ellipse-shape"></div>
-                                <input class="text-label" placeholder="31" type="text" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group-frame2">
-                    <div class="group-frame-child"></div>
-                    <div class="frame-with-rectangle">
-                        <div class="inner-frame1"></div>
-                        <div class="ellipse-and-text">
-                            <div class="message-box">
-                                <div class="shape-with-ellipse"></div>
-                                <input class="text-message" placeholder="30" type="text" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rectangle-box">
-                        <input class="last-frame" type="text" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="outer-container"></div>
+    <div class="notification-container">
+        <button class="notification-button" onclick="showNotifications(0)">Thông báo quan trọng</button>
+        <button class="notification-button" onclick="showNotifications(1)">Thông báo nhắc nhở học phí</button>
+        <button class="notification-button" onclick="showNotifications(2)">Thông báo biến động</button>
+        <button class="notification-button" onclick="showNotifications(3)">Mục thông báo khác</button>
     </div>
 
+    <div class="notification-list-container">
+        <!-- Danh sách thông báo quan trọng -->
+        <div id="notificationList0" class="notification-list">
+            <ul>
+                <script>
+                    // Lặp 20 lần để tạo 20 mục thông báo và dấu gạch ngang cho danh sách 0
+                    for (let i = 0; i < 20; i++) {
+                        document.write('<li>Có sự kiện quan trọng vào ngày mai.</li>');
+                        document.write('<li>-------------------------------------------------------------</li>');
+                    }
+                </script>
+            </ul>
+        </div>
+
+        <!-- Danh sách thông báo nhắc nhở học phí -->
+        <div id="notificationList1" class="notification-list">
+            <ul>
+                <script>
+                    // Lặp 20 lần để tạo 20 mục thông báo và dấu gạch ngang cho danh sách 1
+                    for (let i = 0; i < 20; i++) {
+                        document.write('<li>Hạn chót nộp học phí cho học kỳ này là ngày 30/04/2024.</li>');
+                        document.write('<li>-------------------------------------------------------------</li>');
+                    }
+                </script>
+            </ul>
+        </div>
+
+        <!-- Danh sách thông báo biến động -->
+        <div id="notificationList2" class="notification-list">
+            <ul>
+                <script>
+                    // Lặp 20 lần để tạo 20 mục thông báo và dấu gạch ngang cho danh sách 2
+                    for (let i = 0; i < 20; i++) {
+                        document.write('<li>Giá cổ phiếu XYZ tăng 10% trong phiên giao dịch hôm nay.</li>');
+                        document.write('<li>-------------------------------------------------------------</li>');
+                    }
+                </script>
+            </ul>
+        </div>
+
+        <!-- Danh sách mục thông báo khác -->
+        <div id="notificationList3" class="notification-list">
+            <ul>
+                <script>
+                    // Lặp 20 lần để tạo 20 mục thông báo và dấu gạch ngang cho danh sách 3
+                    for (let i = 0; i < 20; i++) {
+                        document.write('<li>Mục thông báo khác 1</li>');
+                        document.write('<li>-------------------------------------------------------------</li>');
+                    }
+                </script>
+            </ul>
+        </div>
+    </div>
+    <div class="rectangle-parent9" id="rectangle-parent9">
+        <span>Back</span>
+    </div>
+
+    <script src="../JS/AnnoucementPage.js"></script>
     <script>
-        var groupContainer = document.getElementById("groupContainer");
-        if (groupContainer) {
-            groupContainer.addEventListener("click", function (e) {
-                window.location.href = "./ProfileUser.html";
+        var back = document.getElementById("rectangle-parent9");
+        if (back) {
+            back.addEventListener("click", function (e) {
+                window.location.href = "./HomePage.html";
             });
         }
     </script>

@@ -43,6 +43,11 @@
                             </div>
                         </div>
                         <div class="balance-frame1">
+                            <div class="transaction-history" id="AnnouncementPage">
+                                ANNOUNCEMENTPAGE
+                            </div>
+                        </div>
+                        <div class="balance-frame1">
                             <div class="transaction-history" id="TransactionHistory">
                                 TRANSACTION HISTORY
                             </div>
@@ -169,6 +174,13 @@
         if (TransactionHistory) {
             TransactionHistory.addEventListener("click", function (e) {
                 window.location.href = "../Transaction/TransactionHistory.html";
+            });
+        }
+
+        var AnnouncementPage = document.getElementById("AnnouncementPage");
+        if (AnnouncementPage) {
+            AnnouncementPage.addEventListener("click", function (e) {
+                window.location.href = "./AnnouncementPage.html";
             });
         }
 
