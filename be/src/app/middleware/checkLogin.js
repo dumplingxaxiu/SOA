@@ -16,7 +16,7 @@ async function checkLogin(req, res, next) {
       return res.json({ success: false, message: "User not login!" });
     }
   } catch (error) {
-    return res.json({ success: false, message: "Error!" });
+    return res.json({ success: false, message: "Error! in get token" });
   }
 }
 

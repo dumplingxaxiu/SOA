@@ -46,7 +46,7 @@ class TransactionController {
         }
 
         try {
-           const transaction = new Transaction({
+            const transaction = new Transaction({
             SenderID: sender.bankAccountNumber,
             SenderName: sender.fullName,
             ReceiverID: receiver.bankAccountNumber,
@@ -76,7 +76,9 @@ class TransactionController {
         }
     }
     async verifyTransaction(req, res, next){
+        console.log(req.body)
         const submittedOTP = req.body.submittedOTP
+        console.log(submittedOTP)
         if(!submittedOTP){
             return res.json({
                 success: false,

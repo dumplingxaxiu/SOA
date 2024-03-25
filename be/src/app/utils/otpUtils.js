@@ -1,5 +1,6 @@
 const { json } = require("express");
 const session = require("express-session")
+const bcrypt = require("bcrypt")
 const today = new Date();
 var DD = today.getDate()
 var MM = today.getMonth() + 1
@@ -13,17 +14,19 @@ const OTPGenerator = () =>{
 }
 
 const OTPSigned = async () =>{
-    const otp = OTPGenerator();
+    let otp = OTPGenerator();
+    console.log(otp)
+    let hashedOTP = bcrypt.hashSync(otp, 10)
     expiredAt = new Date(YYYY,MM,DD,hh,mm + 3,ss)
-    console.log(expiredAt)
     return {
-        otp: otp,
+        otp: hashedOTP,
         //createAt: createAt,
         expiredAt: expiredAt
     }
 }
 
 const OTPVerify = async (key,otp) => {
+    console.log(key)
     if(!key){
         return {
             success:false,
@@ -39,7 +42,9 @@ const OTPVerify = async (key,otp) => {
         return {success: false,
             message: "transaction otp verify failed by expiration"}
     }
-    if(otp != key.otp.otp){
+    const isMatch = await bcrypt.compare(otp, key.otp.otp)
+    console.log(isMatch)
+    if(!isMatch){
         return {success: false,
             message: "transaction otp verify failed by otp"}
     }else{
