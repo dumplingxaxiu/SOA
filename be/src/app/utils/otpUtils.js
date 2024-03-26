@@ -19,7 +19,7 @@ const OTPSigned = async (email) =>{
     console.log(otp)
     const options = {
         from: credentials.email.emailAddress, // sender address
-        to: "miraculousmut@gmail.com", // receiver email
+        to: email, // receiver email
         subject: "Transaction OTP for comfirmation", // Subject line
         text: "Your transaction OTP is " + otp
     }
