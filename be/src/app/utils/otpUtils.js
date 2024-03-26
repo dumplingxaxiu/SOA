@@ -1,6 +1,7 @@
 const { json } = require("express");
-const session = require("express-session")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const sendMail = require("../utils/sendEmail");
+const credentials = require("../../credentials");
 const today = new Date();
 var DD = today.getDate()
 var MM = today.getMonth() + 1
@@ -13,9 +14,19 @@ const OTPGenerator = () =>{
     return Math.floor(100000 + Math.random () * 900000).toString()
 }
 
-const OTPSigned = async () =>{
+const OTPSigned = async (email) =>{
     let otp = OTPGenerator();
     console.log(otp)
+    const options = {
+        from: credentials.email.emailAddress, // sender address
+        to: "miraculousmut@gmail.com", // receiver email
+        subject: "Transaction OTP for comfirmation", // Subject line
+        text: "Your transaction OTP is " + otp
+    }
+    await sendMail(options, (info) => {
+        console.log("Email sent")
+    }) 
+
     let hashedOTP = bcrypt.hashSync(otp, 10)
     expiredAt = new Date(YYYY,MM,DD,hh,mm + 3,ss)
     return {

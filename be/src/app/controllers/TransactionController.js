@@ -56,7 +56,7 @@ class TransactionController {
             TransactionType: context.transactionType,
            })
            await transaction.save()
-           const otpSigned = await OTPSigned()
+           const otpSigned = await OTPSigned(sender.email)
             req.session.signedOTP = {transactionID: transaction.TransactionID,otp: otpSigned}
             console.log(req.session.signedOTP)
             if(!req.session.signedOTP){
