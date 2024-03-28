@@ -1,9 +1,9 @@
-const Customer = require('../models/Customer');
+const Customer = require('../models/Student');
 const Tuition = require('../models/Tuition');
 
 class TuitionController {
-    async checkTuition(req,res,next) {
-        const studentID = req. //chưa có student id
+    async getMyTuition(req,res,next) {
+        const studentID = req.user.StudentID //chưa có student id
         try {
             const tuition = await Tuition.findOne({ StudentID: studentID });
             if (tuition) {
@@ -19,22 +19,7 @@ class TuitionController {
         } catch (error) {
             return next(error);
         }
-}
-class BankAccount {
-    async checkAccountBalance(req,res,next){
-        const studentid = req. //chua có studentid
-        const customerid = req.user.customerid ;
-         try {
-            const tuitionAmount = tuition.tuition;
-            const accountBalance = bankAccount.AccountBalance;
-            if (accountBalance >= tuitionAmount) {
-                return res.json({ message: 'Số dư trong tài khoản đủ' });
-            } else {
-                return
-            }
-        } catch (error) {
-            return next(error);
-        }
     }
 }
+
 module.exports = new TuitionController();

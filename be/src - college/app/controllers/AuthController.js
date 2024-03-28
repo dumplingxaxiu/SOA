@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const Customer = require("../models/Customer");
+const Student = require("../models/Student");
 const credentials = require("../../credentials");
 
 class AuthController {
@@ -8,7 +8,7 @@ class AuthController {
     //Lấy data của user hiện tại
     let userID = req.user.userID;
     try {
-      me = await Customer.findOne({ userID: userID }).select("-password");
+      me = await Student.findOne({ userID: userID }).select("-password");
 
       return res.json({
         success: true,
@@ -23,27 +23,27 @@ class AuthController {
 
   async login(req, res, next) {
     //Login handle
-    const { username, password } = req.body;
+    const { studentID, password } = req.body;
     
-    if (!username || !password) {
+    if (!studentID || !password) {
       return res.json({
         success: false,
         message: "Require username or password!",
       });
     }
     try {
-      const account = await Customer.findOne({ userName: username });
+      const account = await Student.findOne({ studentID: studentID });
       if (!account) {
         return res.json({
           success: false,
-          message: "Username does not exist!",
+          message: "Student ID does not exist!",
         });
       }
       const isMatch = await bcrypt.compare(password, account.password);
       if (!isMatch) {
         return res.json({
           success: false,
-          message: "Username or password is incorrect!",
+          message: "Student ID or password is incorrect!",
         });
       }
       const payload = {

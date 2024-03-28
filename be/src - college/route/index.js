@@ -1,10 +1,10 @@
 const Auth = require("./authRoute");
-const Customer = require("./customerRoute");
-const Transaction = require("./transactionRoute")
+const Student = require("./studentRoute");
+const Tuition = require("./tuitionRoute")
 
 function route(app) {
   app.use("/api/auth", Auth);
-  app.use("/api/customer", Customer);
-  app.use("/api/transaction", Transaction)
+  app.use("/api/customer", Student);
+  app.use("/api/tuition", Tuition)
 }
 module.exports = route;

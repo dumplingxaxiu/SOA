@@ -1,28 +1,25 @@
 const bcrypt = require("bcrypt");
 const Role = require("./app/models/Role.js");
-const Customer = require("./app/models/Customer.js");
+const Student = require("./app/models/Student.js");
 async function createAdminAccount() {
-    let admin = await Role.findOne({ role: "admin" });
+    let admin = await Role.findOne({ role: 0 });
     if (!admin) {
         // Tạo data cho customer model
-        const customerData = {
-            userID: "0",
-            citizenID: "0",
-            fullName: "Admin",
-            bankAccountNumber: "0",
-            phoneNumber: "0",
-            email: "admin@adminmail.com",
-            userName: "admin" 
+        const studentData = {
+            studentID: "0",
+            fullname: "Admin",
+            faculty: "None",
+            major: "None",
+            password: "admin" 
         };
-        const passwordHash = bcrypt.hashSync(customerData.password, 10);
-        customerData.password = passwordHash;
-        const customer = new Customer(customerData);
-        await customer.save();
+        const passwordHash = bcrypt.hashSync(studentData.password, 10);
+        studentData.password = passwordHash;
+        const student = new Student(studentData);
+        await student.save();
 
         //Tạo data cho Role
         const roleData = {
-            userID: customerData.userID,
-            userName: customerData.userName,
+            userID: studentData.studentID,
             role: 0
         }
         const role = new Role(roleData)
