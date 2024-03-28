@@ -11,13 +11,13 @@ class StudentController {
         }
     }
     async addNewStudent(req, res, next) {
-        const { fullName, faculty, major, password} = req.body;
-        if (!fullName || !faculty || !major || !password) {
+        const { fullname, faculty, major, password} = req.body;
+        if (!fullname || !faculty || !major || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
             const student = new Student({
-                fullName: fullName, 
+                fullname: fullname, 
                 faculty: faculty, 
                 major: major,
                 password: password
@@ -31,14 +31,14 @@ class StudentController {
     }
 
     async updateStudent(req, res, next) {
-        const { fullName, faculty, major, password} = req.body;
-        if (!fullName || !faculty || !major || !password) {
+        const { fullname, faculty, major, password} = req.body;
+        if (!fullname || !faculty || !major || !password) {
             return res.json({ success: false, message: "Missing infomation!" });
         }
         try {
             const student = await Student.findOneAndUpdate(
                 {studentID: req.user.studentID}, 
-                {fullName: fullName, 
+                {fullname: fullname, 
                 faculty: faculty, 
                 major: major,
                 password: password

@@ -63,6 +63,5 @@ class AuthController {
       return res.json({ success: false, message: "Error in auth login!" });
     }
   }
-  //Đăng ký ở đây nhưng giữa kỳ không yêu cầu
 }
 module.exports = new AuthController();

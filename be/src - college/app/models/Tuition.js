@@ -6,24 +6,25 @@ const tuitionSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    StudentID: {
+    studentID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
         required: true
     },
-    Semester: {
+    semester: {
         type: String,
         enum: ['HK1', 'HK2', 'HK3'],
         required: true
     },
-    Tuition: {
+    tuition: {
         type: Number,
         required: true
     },
-    State: {
+    state: {
         type: String,
         enum: ['Paid', 'Unpaid'],
-        required: true
+        required: true,
+        default: "Unpaid"
     }
 });
 
