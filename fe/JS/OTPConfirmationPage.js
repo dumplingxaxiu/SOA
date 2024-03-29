@@ -17,13 +17,13 @@ const updateInputConfig = (element, disabledStatus) => {
 };
 function sendOTP() {
     // Gửi yêu cầu HTTP đến máy chủ để gửi email
-    fetch('/send-email', {
+    fetch('/sendMail', { // Sửa đổi URL thành "/sendMail"
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            recipient: 'asdassgsgs2q321@gmail.com'
+            email: 'asdassgsgs2q321@gmail.com' // Thay recipient bằng email muốn gửi OTP
         })
     }).then(response => {
         if (response.ok) {
