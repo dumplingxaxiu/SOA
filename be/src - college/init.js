@@ -19,7 +19,7 @@ async function createAdminAccount() {
 
         //Tạo data cho Role
         const roleData = {
-            userID: studentData.studentID,
+            studentID: studentData.studentID,
             role: 0
         }
         const role = new Role(roleData)

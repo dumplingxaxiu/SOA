@@ -1,3 +1,6 @@
+const bcrypt = require("bcrypt")
+
+const Role = require('../models/Role');
 const Student = require('../models/Student');
 
 class StudentController {
@@ -23,6 +26,12 @@ class StudentController {
                 password: password
             })
             await student.save();
+
+            const role = new Role({
+                studentID: student.studentID
+            
+            })
+            await role.save()
             return res.json({ success: true, message: "Add new student successfully!", data: student });
         }
         catch (error) {
@@ -31,19 +40,26 @@ class StudentController {
     }
 
     async updateStudent(req, res, next) {
-        const { fullname, faculty, major, password} = req.body;
-        if (!fullname || !faculty || !major || !password) {
-            return res.json({ success: false, message: "Missing infomation!" });
-        }
+        const {studentID, fullname, faculty, major, password} = req.body
         try {
-            const student = await Student.findOneAndUpdate(
-                {studentID: req.user.studentID}, 
-                {fullname: fullname, 
-                faculty: faculty, 
-                major: major,
-                password: password
-            });
-
+            const student = await Student.findOne(
+                {studentID: studentID}
+            )
+            const { fullname, faculty, major, password} = req.body;
+            if(fullname){
+                student.fullname = fullname
+            }
+            if(faculty){
+                student.faculty = faculty
+            }
+            if(major){
+                student.major = major
+            }
+            if(password){
+                const passwordHash = bcrypt.hashSync(studentData.password, 10);
+                student.password = passwordHash
+            }
+            student.save()
             return res.json({ 
                  success: true,
                  message: "Update student successfully!",
@@ -56,12 +72,13 @@ class StudentController {
     }
 
     async deleteStudent(req, res, next) {
-        const { id } = req.user.userID;
+        const id = req.body.studentID;
         try {
           if (!id) {
             return res.json({ success: false, message: "Missing id!" });
           }
           await Student.findOneAndRemove({studentID: id});
+          await Role.findOneAndRemove({studentID: id});
           return res.json({ 
             success: true, 
             message: "Student deleted!",

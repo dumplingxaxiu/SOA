@@ -3,10 +3,10 @@ const Tuition = require('../models/Tuition');
 
 class TuitionController {
     async getMyTuition(req,res,next) {
-        const studentID = req.user.studentID //chưa có student id
+        const studentID = req.user.data.studentID
         try {
-            const tuitions = await Tuition.find({ StudentID: studentID });
-            if (tuition) {
+            const tuitions = await Tuition.find({ studentID: studentID });
+            if (tuitions) {
                 // Trả về dữ liệu tuition
                 return res.json({
                     success: true,
@@ -30,16 +30,16 @@ class TuitionController {
             })
         }
         try {
-            const tuition = new Tuition({
+            const tuitionData = new Tuition({
                 studentID: studentID,
                 tuition: tuition,
                 semester: semester
             })
-            await tuition.save()
+            await tuitionData.save()
             return res.json({
                 success: true,
                 message: "Add tuition succeeded!",
-                tuition: tuition
+                tuition: tuitionData
             });
         } catch (error) {
             return res.json({
@@ -50,7 +50,7 @@ class TuitionController {
     }
 
     async updateTuition(req,res,next) {
-        const tuitionID = req.body
+        const {tuitionID, studentID, semester} = req.body
         if(!tuitionID){
             return res.json({
                 success: false,
@@ -58,14 +58,24 @@ class TuitionController {
             })
         }
         try {
-            const tuition = Tuition.findOne({tuitionID: tuitionID})
+            const tuition = await Tuition.findOne({tuitionID: tuitionID})
+
+            if(studentID){
+                tuition.studentID = studentID
+            }
+            if(semester){
+                tuition.semester = semester
+            }
+
             const isVerify = {success: false} //await onConfirmPayment();
 
             if(isVerify.success == true){
                 tuition.tuition = 0
                 tuition.state = "Paid"
             }
+
             await tuition.save()
+
             return res.json({
                 success: true,
                 message: "Update tuition succeeded!",

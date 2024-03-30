@@ -8,7 +8,7 @@ class AuthController {
     //Lấy data của user hiện tại
     let userID = req.user.userID;
     try {
-      me = await Student.findOne({ userID: userID }).select("-password");
+      const me = await Student.findOne({ userID: userID }).select("-password");
 
       return res.json({
         success: true,

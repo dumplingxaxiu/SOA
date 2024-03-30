@@ -4,11 +4,13 @@ const tuitionSchema = new mongoose.Schema({
     tuitionID: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        default: () => {
+            return 'TUITION' + Math.floor(100000 + Math.random () * 900000).toString();
+        }
     },
     studentID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student',
+        type: String,
         required: true
     },
     semester: {
