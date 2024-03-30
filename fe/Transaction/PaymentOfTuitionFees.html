@@ -72,17 +72,19 @@
             </div>
         </div>
         <div class="customer-info dienthongtin">
-            <div>User ID : <span id="user-id">123456</span></div>
-            <div>User Name : <span id="user-name">John Doe</span></div>
-            <div>Email: <span id="user-email">john.doe@example.com</span></div>
-            <div>User Phone: <span id="user-phone">123-456-7890</span></div>
+            <div>User ID : <span id="userID">123456</span></div>
+            <div>User Name : <span id="fullName">John Doe</span></div>
+            <div>Email: <span id="email">john.doe@example.com</span></div>
+            <div>Phone Number: <span id="phoneNumber">123-456-7890</span></div>
+            <div>Bank Account Number: <span id=" bankAccountNumber">none</span></div>
+            <div>Balance: <span id="balance">none</span></div>
             <div class="input-container">
-                <label for="student-id">Student ID:</label>
-                <input type="text" id="student-id" name="student-id" placeholder="Enter Student ID" readonly>
+                <label for="studentID">Student ID:</label>
+                <input type="text" id="studentID" name="studentID" placeholder="Enter Student ID" readonly>
             </div>
             <div class="input-container">
-                <label for="full-name">Students full name:</label>
-                <input type="text" id="full-name" name="full-name" placeholder="Enter Full Name" readonly>
+                <label for="fullname">Students Name:</label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter Full Name" readonly>
             </div>
             <div class="input-container">
                 <label for="online-banking">Online Banking:</label>
@@ -90,12 +92,12 @@
                     readonly>
             </div>
             <div class="input-container">
-                <label for="tuition-code">Tuition code:</label>
-                <input type="text" id="tuition-code" name="tuition-code" placeholder="Enter Tuition Code" readonly>
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state">
             </div>
             <div class="input-container">
-                <label for="available-balances">Available balances:</label>
-                <input type="text" id="available-balances" name="available-balances" value="1000" readonly>
+                <label for="account balance">Available balances:</label>
+                <input type="text" id="account balance" name="account balance" value="1000" readonly>
             </div>
             <div class="input-container">
                 <label for="amount">Enter Your Amount:</label>
@@ -113,7 +115,6 @@
     </div>
 
 
-    <script src="../JS/PaymentOfTuitionFees.js"></script>
 
     <script>
         function goBack() {
@@ -122,6 +123,45 @@
 
         function proceedToPayment() {
             window.location.href = "./OTPConfirmationPage.html";
+        }
+    </script>
+
+    <script>
+        // Dữ liệu mẫu
+        const tuitionFeesData = [
+            { id: 1, type: 'Type 1', name: 'Tuition Fee 1', price: 100, link: 'PaymentInformationPage.html' },
+            { id: 2, type: 'Type 2', name: 'Tuition Fee 2', price: 200, link: 'link2' },
+            { id: 3, type: 'Type 3', name: 'Tuition Fee 3', price: 300, link: 'link3' },
+            // Thêm dữ liệu mẫu để vượt quá 10 hàng
+            { id: 4, type: 'Type 4', name: 'Tuition Fee 4', price: 400, link: 'link4' },
+            { id: 5, type: 'Type 5', name: 'Tuition Fee 5', price: 500, link: 'link5' },
+            { id: 6, type: 'Type 6', name: 'Tuition Fee 6', price: 600, link: 'link6' },
+            { id: 7, type: 'Type 7', name: 'Tuition Fee 7', price: 700, link: 'link7' },
+            { id: 8, type: 'Type 8', name: 'Tuition Fee 8', price: 800, link: 'link8' },
+            { id: 9, type: 'Type 9', name: 'Tuition Fee 9', price: 900, link: 'link9' },
+            { id: 10, type: 'Type 10', name: 'Tuition Fee 10', price: 1000, link: 'link10' },
+            { id: 11, type: 'Type 11', name: 'Tuition Fee 11', price: 1100, link: 'link11' },
+            { id: 12, type: 'Type 12', name: 'Tuition Fee 12', price: 1200, link: 'link12' }
+        ];
+
+        // Lặp qua dữ liệu và chèn vào bảng
+        const tableBody = document.getElementById('table-body');
+        tuitionFeesData.forEach(data => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${data.id}</td>
+                <td>${data.type}</td>
+                <td>${data.name}</td>
+                <td>${data.price}</td>
+                <td><a href="${data.link}" class="link-button">Chuyển đến trang</a></td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Kiểm tra số lượng hàng và hiển thị thanh cuộn dọc nếu cần
+        const tableBodyWrapper = document.getElementById('table-body-wrapper');
+        if (tableBody.childElementCount > 10) {
+            tableBodyWrapper.style.overflowY = 'auto';
         }
     </script>
 </body>
