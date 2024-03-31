@@ -1,3 +1,5 @@
+// index.js
+
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -10,7 +12,6 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 
 const route = require('./route/index.js');
-const sendMailRoute = require('./route/sendMail.js'); // Import route sendMail
 
 const db = require('./config/db.js');
 const credentials = require('./credentials');
@@ -28,9 +29,6 @@ app.use(expressSession({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Không sử dụng tiền tố "/api" cho route "sendMail"
-app.use('/sendMail', sendMailRoute); // Sử dụng route sendMail
 
 route(app);
 
