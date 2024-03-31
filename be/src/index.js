@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 
 const route = require('./route/index.js');
+const createAndSendInvoice = require('./invoiceFunctions'); // Thêm đường dẫn đến file mới
 
 const db = require('./config/db.js');
 const credentials = require('./credentials');
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 route(app);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => { // Sử dụng async function để gọi hàm tạo và gửi hóa đơn
     console.log(`App listening at http://localhost:${PORT}`);
+    await createAndSendInvoice(); // Gọi hàm tạo và gửi hóa đơn khi server khởi động
 });
