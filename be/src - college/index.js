@@ -12,8 +12,10 @@ const route = require('./route/index.js');
 const db = require('./config/db.js');
 const credentials = require('./credentials');
 const init = require("./init");
+const accessKey = require('./config/accessKey.js');
 
 db.connect();
+accessKey()
 init.createAdminAccount();
 
 app.use(cookieParser())

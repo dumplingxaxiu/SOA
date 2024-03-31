@@ -10,7 +10,6 @@ module.exports = {
     password: ""
   },
   partner: {
-    name: "Ton Duc Thang University",
-    key: "z(K@n6nKGhE!F2#}46pir=b%v?cGHE3(8pi5c5w1CwR,@KbSyktbc104p9qh*d&BgQB8j7bv=&e{wgaT2;0RFm1n!m:;V&hz@:]G&#%38*Mfeb.EHn@+8xpXbM4vnX*6"
+    tdtu: "z(K@n6nKGhE!F2#}46pir=b%v?cGHE3(8pi5c5w1CwR,@KbSyktbc104p9qh*d&BgQB8j7bv=&e{wgaT2;0RFm1n!m:;V&hz@:]G&#%38*Mfeb.EHn@+8xpXbM4vnX*6"
   }
 };

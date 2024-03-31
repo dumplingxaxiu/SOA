@@ -60,7 +60,15 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 8
-    }
+    },
+    linkedData: [new mongoose.Schema({
+        partnerHost: {
+            type: String
+        },
+        key: {
+            type: String
+        }
+    }, {_id: false})]
 });
 
 // Tạo model từ schema và xuất nó
