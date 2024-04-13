@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="./css/HomePage.css" />
+    <title>ejs</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/HomePage.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@500;600;700;800&display=swap" />
     <link rel="stylesheet"
@@ -159,35 +159,35 @@
         var pageProfile = document.getElementById("pageProfile");
         if (pageProfile) {
             pageProfile.addEventListener("click", function (e) {
-                window.location.href = "./ProfileUser.html";
+                window.location.href = "/homepage/profileuser";
             });
         }
 
         var PaytuitionFee = document.getElementById("PaytuitionFee");
         if (PaytuitionFee) {
             PaytuitionFee.addEventListener("click", function (e) {
-                window.location.href = "../Transaction/PaymentOfTuitionFees.html";
+                window.location.href = "/homepage/paymentoftuitionfees";
             });
         }
 
         var TransactionHistory = document.getElementById("TransactionHistory");
         if (TransactionHistory) {
             TransactionHistory.addEventListener("click", function (e) {
-                window.location.href = "../Transaction/TransactionHistory.html";
+                window.location.href = "/homepage/transactionhistory";
             });
         }
 
         var AnnouncementPage = document.getElementById("AnnouncementPage");
         if (AnnouncementPage) {
             AnnouncementPage.addEventListener("click", function (e) {
-                window.location.href = "./AnnouncementPage.html";
+                window.location.href = "/homepage/announcementpage";
             });
         }
 
         var autoLayoutHorizontal = document.getElementById("autoLayoutHorizontal");
         if (autoLayoutHorizontal) {
             autoLayoutHorizontal.addEventListener("click", function (e) {
-                window.location.href = "./SignIn.html";
+                window.location.href = "/";
             });
         }
     </script>

@@ -12,8 +12,8 @@
     <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
     <!-- /fonts -->
     <!-- css -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="./css/style.css" rel='stylesheet' type='text/css' media="all" />
+    <title>ejs</title>
     <!-- /css -->
 </head>
 
@@ -56,43 +56,43 @@
         </div>
     </div>
 
-<script>
-    var loginButton = document.getElementById("loginButton");
+    <script>
+        var loginButton = document.getElementById("loginButton");
 
-    if (loginButton) {
-        loginButton.addEventListener("click", function (e) {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password1").value;
+        if (loginButton) {
+            loginButton.addEventListener("click", function (e) {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password1").value;
 
-            // Kiểm tra nếu username hoặc password trống
-            if (username.trim() === "" || password.trim() === "") {
-                // Hiển thị thông báo
-                displayPopup("Empty Username And Password");
-            } else {
-                // Nếu không trống, chuyển đến trang HomePage.html
-                window.location.href = "./HomePage.html";
-            }
-        });
-    }
+                // Kiểm tra nếu username hoặc password trống
+                if (username.trim() === "" || password.trim() === "") {
+                    // Hiển thị thông báo
+                    displayPopup("Empty Username And Password");
+                } else {
+                    // Nếu không trống, chuyển đến trang HomePage.html
+                    window.location.href = "/homepage";
+                }
+            });
+        }
 
-    var signupButton = document.getElementById("signupButton");
+        var signupButton = document.getElementById("signupButton");
 
-    if (signupButton) {
-        signupButton.addEventListener("click", function (e) {
-            window.location.href = "./SignUp.html";
-        });
-    }
-    function displayPopup(message) {
-        var popup = document.getElementById("popup");
-        var popupMessage = document.getElementById("popup-message");
+        if (signupButton) {
+            signupButton.addEventListener("click", function (e) {
+                window.location.href = "/";
+            });
+        }
+        function displayPopup(message) {
+            var popup = document.getElementById("popup");
+            var popupMessage = document.getElementById("popup-message");
 
-        // Hiển thị pop-up
-        popup.style.display = "block";
+            // Hiển thị pop-up
+            popup.style.display = "block";
 
-        // Thiết lập thông báo
-        popupMessage.textContent = message;
-    }
-</script>    
+            // Thiết lập thông báo
+            popupMessage.textContent = message;
+        }
+    </script>
 </body>
 
 </html>

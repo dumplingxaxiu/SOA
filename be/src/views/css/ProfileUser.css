@@ -295,7 +295,7 @@
     outline: 0;
     top: 23px;
     left: 104px;
-    background-image: url('../images/avatar_user.jpg');
+    background-image: url('/images/avatar_user.jpg');
     background-size: cover;
     background-position: center;
 }

@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="../Transaction/css/global.css" />
-    <link rel="stylesheet" href="../Transaction/css/OTPConfirmationPage.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/OTPConfirmationPage.css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;800&display=swap" />
@@ -69,19 +69,19 @@
             </section>
         </div>
     </div>
-    <script src="../JS/OTPConfirmationPage.js"></script>
+    <script src="/JS/OTPConfirmationPage.js"></script>
     <script>
         var groupButton = document.getElementById("groupButton");
         if (groupButton) {
             groupButton.addEventListener("click", function (e) {
-                window.location.href = "./PaymentOfTuitionFees.html";
+                window.location.href = "/homepage/paymentoftuitionfees";
             });
         }
 
         var rectangle = document.getElementById("submit");
         if (rectangle) {
             rectangle.addEventListener("click", function (e) {
-                window.location.href = "./TransactionResultPage.html";
+                window.location.href = "/homepage/paymentoftuitionfees/otpconfirmationpage/transactionresultpage";
             });
         }
     </script>
