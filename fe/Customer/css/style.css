@@ -265,6 +265,8 @@ p.agileits2 {
 input#firstname,
 input#phone,
 input#email,
+input#username,
+input#username,
 input#password1,
 input#password2 {
 	width: 300px;
@@ -288,11 +290,13 @@ input#password2 {
 input#firstname:focus,
 input#phone:focus,
 input#email:focus,
+input#username:focus,
 input#password1:focus,
 input#password2:focus,
 input#firstname:hover,
 input#phone:hover,
 input#email:hover,
+input#username:hover,
 input#password1:hover,
 input#password2:hover {
 	color: #fff;
@@ -499,6 +503,7 @@ p.copyright a:hover {
 	input#firstname,
 	input#phone,
 	input#email,
+	input#username,
 	input#password1,
 	input#password2 {
 		font-size: 15px;
@@ -527,6 +532,7 @@ p.copyright a:hover {
 	input#firstname,
 	input#phone,
 	input#email,
+	input#username,
 	input#password1,
 	input#password2 {
 		width: 260px;
@@ -608,6 +614,7 @@ p.copyright a:hover {
 	input#firstname,
 	input#phone,
 	input#email,
+	input#username,
 	input#password1,
 	input#password2 {
 		width: 230px;
@@ -667,6 +674,8 @@ p.copyright a:hover {
 	input#firstname,
 	input#phone,
 	input#email,
+	input#username,
+	input#username,
 	input#password1,
 	input#password2 {
 		width: 195px;
