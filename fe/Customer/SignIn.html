@@ -50,23 +50,33 @@
     </div>
     <p class="copyright w3l">© 2024<a target="_blank">SOA</a></p>
 
-    <script>
-        var loginButton = document.getElementById("loginButton");
+<script>
+    var loginButton = document.getElementById("loginButton");
 
-        if (loginButton) {
-            loginButton.addEventListener("click", function (e) {
+    if (loginButton) {
+        loginButton.addEventListener("click", function (e) {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password1").value;
+
+            // Kiểm tra nếu username hoặc password trống
+            if (username.trim() === "" || password.trim() === "") {
+                // Hiển thị thông báo
+                alert("Please enter both username and password.");
+            } else {
+                // Nếu không trống, chuyển đến trang HomePage.html
                 window.location.href = "./HomePage.html";
-            });
-        }
+            }
+        });
+    }
 
-        var signupButton = document.getElementById("signupButton");
+    var signupButton = document.getElementById("signupButton");
 
-        if (signupButton) {
-            signupButton.addEventListener("click", function (e) {
-                window.location.href = "./SignUp.html";
-            });
-        }
-    </script>
+    if (signupButton) {
+        signupButton.addEventListener("click", function (e) {
+            window.location.href = "./SignUp.html";
+        });
+    }
+</script>    
 </body>
 
 </html>
