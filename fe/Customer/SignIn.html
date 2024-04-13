@@ -50,6 +50,12 @@
     </div>
     <p class="copyright w3l">© 2024<a target="_blank">SOA</a></p>
 
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-message"></p>
+        </div>
+    </div>
+
 <script>
     var loginButton = document.getElementById("loginButton");
 
@@ -61,7 +67,7 @@
             // Kiểm tra nếu username hoặc password trống
             if (username.trim() === "" || password.trim() === "") {
                 // Hiển thị thông báo
-                alert("Empty Username And Password");
+                displayPopup("Empty Username And Password");
             } else {
                 // Nếu không trống, chuyển đến trang HomePage.html
                 window.location.href = "./HomePage.html";
@@ -75,6 +81,16 @@
         signupButton.addEventListener("click", function (e) {
             window.location.href = "./SignUp.html";
         });
+    }
+    function displayPopup(message) {
+        var popup = document.getElementById("popup");
+        var popupMessage = document.getElementById("popup-message");
+
+        // Hiển thị pop-up
+        popup.style.display = "block";
+
+        // Thiết lập thông báo
+        popupMessage.textContent = message;
     }
 </script>    
 </body>
