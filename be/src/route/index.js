@@ -1,4 +1,5 @@
 //be\src\route\index.js
+
 const bodyParser = require("body-parser");
 const Auth = require("./authRoute");
 const Customer = require("./customerRoute");
@@ -6,7 +7,7 @@ const Transaction = require("./transactionRoute");
 const SendMail = require("./sendMail"); // them route sendMail
 const Invoice = require("./invoiceRoute");
 const AccessKeyValidate = require("../app/middleware/partnerKeyValidate");
-
+const AuthController = require('../app/controllers/AuthController');
 const route = (app) => {
   app.use(bodyParser.json());
   app.use("/api/auth", AccessKeyValidate, Auth);
@@ -25,6 +26,7 @@ const route = (app) => {
     // Tiếp tục xử lý yêu cầu bằng cách chuyển gọi middleware Auth
     Auth(req, res, next);
   });
+  app.get("/api/fetchData", AuthController.fetchData);
 }
 
 module.exports = route;

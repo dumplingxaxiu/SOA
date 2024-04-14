@@ -28,6 +28,8 @@ app.use(expressSession({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'views'))); // Kết nối các tệp tĩnh từ thư mục public
+
+
 // Định tuyến
 route(app);
 
@@ -38,9 +40,11 @@ app.get('/', (req, res) => {
     res.render('Customer/SignIn'); // Tên của tệp EJS là SignIn.ejs
 });
 
-app.get('/homepage', (req, res) => {
-    res.render('Customer/HomePage'); // Tên của tệp EJS là HomePage.ejs
+app.get('/id=:userId/homepage', (req, res) => {
+    const userId = req.params.userId;
+    res.render('Customer/HomePage', { userId: userId });
 });
+
 
 app.get('/homepage/profileuser', (req, res) => {
     res.render('Customer/ProfileUser'); // Tên của tệp EJS là ProfileUser.ejs

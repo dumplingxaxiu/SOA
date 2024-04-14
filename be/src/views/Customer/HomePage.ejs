@@ -26,7 +26,7 @@
                 <div class="t-r-a-n-s-a-c-t-i-o-n-h-i-s-t-parent">
                     <div class="t-r-a-n-s-a-c-t-i-o-n-h-i-s-t">
                         <div class="logout-text">
-                            <img class="frame-wrapper" loading="lazy" alt="" src="./images/logo.jpg" />
+                            <img class="frame-wrapper" loading="lazy" alt="" src="../images/logo.jpg" />
                             <div class="pay">PAY</div>
                         </div>
                         <div class="get-card">GET CARD</div>
@@ -70,7 +70,8 @@
                                     <div class="transactions-frame">
                                         <div class="ibanking2">IBanking</div>
                                         <div class="auto-layout-horizontal1">
-                                            <img class="group-icon" loading="lazy" alt="" src="./images/img_hq_1.png" />
+                                            <img class="group-icon" loading="lazy" alt=""
+                                                src="../images/img_hq_1.png" />
 
                                             <div class="auto-layout-horizontal2">
                                                 <div class="auto-layout-vertical">
@@ -84,7 +85,7 @@
                                 </div>
                                 <div class="group-frame-inner">
                                     <div class="frame-parent4">
-                                        <img class="frame-child11" loading="lazy" alt="" src="./images/img_hq_2.png" />
+                                        <img class="frame-child11" loading="lazy" alt="" src="../images/img_hq_2.png" />
 
                                         <div class="account-balance1">Account Balance</div>
 
@@ -120,20 +121,22 @@
                                                 <div class="frame-child12"></div>
                                                 <div class="payment-and-history-group">
                                                     <div class="customer-information">
-                                                        Customer information:......................
+                                                        Họ tên:
+                                                        <span id="fullName"></span>
                                                     </div>
                                                 </div>
                                                 <div class="email-text">
                                                     <div class="how-it-works-text">
                                                         <div class="account-balance2">
-                                                            Account balance:......................
+                                                            Số dư khả dụng:
+                                                            <span id="amount"></span>
                                                         </div>
                                                     </div>
-                                                    <div class="sdt">SDT:......................</div>
+                                                    <div class="sdt">Số điện thoại: <span id="phoneNumber"></span></div>
                                                 </div>
                                                 <div class="frame-with-pay-tuition-fee-and">
                                                     <div class="email1">
-                                                        EMAIL:......................
+                                                        <span id="email"></span>
                                                     </div>
                                                 </div>
                                                 <div class="payment-and-history-group1">
@@ -187,9 +190,49 @@
         var autoLayoutHorizontal = document.getElementById("autoLayoutHorizontal");
         if (autoLayoutHorizontal) {
             autoLayoutHorizontal.addEventListener("click", function (e) {
+                // Xóa token từ localStorage
+                localStorage.removeItem('token');
+                // Điều hướng người dùng đến trang chính (homepage)
                 window.location.href = "/";
             });
         }
+
+        // Check xem token đã được lưu trong localStorage chưa
+        var storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            console.log('Token found in localStorage:', storedToken);
+
+            // Gửi yêu cầu fetch với mã token
+            fetch('/api/fetchData', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${storedToken}` // Thêm mã token vào tiêu đề "Authorization"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.user) {
+                        // Hiển thị dữ liệu người dùng trong trang HTML
+                        document.getElementById('fullName').textContent = data.user.fullName || 'N/A';
+                        document.getElementById('phoneNumber').textContent = data.user.phoneNumber || 'N/A';
+                        // Sử dụng giá trị balance thay vì amount
+                        var balance = data.user.balance;
+                        document.getElementById('amount').textContent = Number.isInteger(balance) ? balance : 'N/A';
+                        document.getElementById('email').textContent = data.user.email || 'N/A';
+                    } else {
+                        console.log('Error fetching user data:', data.message || 'Unknown error');
+                        // Xử lý trường hợp không tìm thấy hoặc lỗi trong dữ liệu người dùng
+                    }
+
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        } else {
+            console.log('Token not found in localStorage');
+            // Nếu token không được tìm thấy, bạn có thể thực hiện xử lý khác tùy theo nhu cầu của bạn
+        }
+
     </script>
 </body>
 
