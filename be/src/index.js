@@ -12,7 +12,7 @@ const createAndSendInvoice = require('./invoiceFunctions');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-
+console.log('Routes initialized successfully');
 // Kết nối cơ sở dữ liệu và tạo tài khoản quản trị khi máy chủ khởi động
 db.connect();
 init.createAdminAccount();
@@ -69,6 +69,7 @@ app.get('/homepage/paymentoftuitionfees/otpconfirmationpage/transactionresultpag
 app.get('/homepage/paymentoftuitionfees/paymentinformationpage', (req, res) => {
     res.render('Transaction/PaymentInformationPage'); // Tên của tệp EJS là PaymentInformationPage.ejs
 });
+
 // Lắng nghe cổng
 app.listen(PORT, async () => {
     console.log(`App listening at http://localhost:${PORT}`);

@@ -25,11 +25,13 @@ class AuthController {
   async login(req, res, next) {
     //Login handle
     const { userName, password } = req.body;
-
     if (!userName || !password) {
       return res.json({
         success: false,
         message: "Require username or password!",
+        userName: userName,
+        password: password
+
       });
     }
     try {
@@ -45,7 +47,7 @@ class AuthController {
         return res.json({
           success: false,
           message: "Username or password is incorrect!",
-          username: account.username,
+          userName: account.userName,
           password: account.password,
           isMatch: isMatch
         });

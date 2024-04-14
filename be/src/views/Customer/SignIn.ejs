@@ -28,7 +28,7 @@
             <form id="loginForm" method="post">
 
                 <div class="form-control w3layouts" style=" margin-top: 100px;">
-                    <input type="text" id="username" name="username" placeholder="Username"
+                    <input type="text" id="username" name="userName" placeholder="Username"
                         title="Please enter a valid username" required="">
                 </div>
 
@@ -65,9 +65,9 @@
             loginForm.addEventListener("submit", function (e) {
                 e.preventDefault(); // Ngăn form gửi yêu cầu mặc định
 
-                var username = document.getElementById("username").value;
+                var userName = document.getElementById("username").value;
                 var password = document.getElementById("password1").value;
-                console.log("Username:", username);
+                console.log("Username:", userName);
                 console.log("Password:", password);
 
                 // Gửi yêu cầu đăng nhập đến server
@@ -76,7 +76,7 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({ userName, password })
                 })
                     .then(response => response.json())
                     .then(data => {
