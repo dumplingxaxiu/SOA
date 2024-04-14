@@ -13,6 +13,10 @@ const route = (app) => {
   app.use("/api/transaction", AccessKeyValidate, Transaction);
   app.use("/api/sendMail", SendMail);
   app.use("/api/invoice", Invoice); // Thêm route mới cho gửi hóa đơn
+  app.use("/api/login", Auth);
+  console.log('Routes initialized successfully');
+
+
 }
 
 module.exports = route;

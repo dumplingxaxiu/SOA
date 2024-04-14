@@ -1,14 +1,17 @@
-const credentials = require("../../credentials")
+//be\src\app\middleware\partnerKeyValidate.js
+const credentials = require("../../credentials");
 
 const AccessKeyValidate = async (req, res, next) => {
-    const { key, hostname } = req.headers; // Sử dụng req.headers để lấy thông tin header
+    const key = req.headers.key; // Lấy thông tin key từ tiêu đề của yêu cầu
 
-    if (!key || !hostname) {
+    if (!key) {
         return res.json({
             success: false,
             message: "Missing information in access request through API"
         });
     }
+
+    const hostname = "4000"; // Thay đổi giá trị hostname thành 4000
 
     const partner = credentials.partner[hostname];
     if (!partner) {

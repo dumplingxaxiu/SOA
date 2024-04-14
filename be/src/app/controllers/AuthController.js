@@ -45,6 +45,9 @@ class AuthController {
         return res.json({
           success: false,
           message: "Username or password is incorrect!",
+          username: account.username,
+          password: account.password,
+          isMatch: isMatch
         });
       }
       const payload = {
