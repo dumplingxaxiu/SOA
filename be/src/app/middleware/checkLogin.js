@@ -1,5 +1,7 @@
+//be\src\app\middleware\checkLogin.js
 const jwt = require("jsonwebtoken");
 const { secret_key } = require("../../credentials");
+
 async function checkLogin(req, res, next) {
   let header = req.headers.authorization;
   let token = header && header.split(" ")[1];

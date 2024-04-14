@@ -1,4 +1,4 @@
-// route/index.js
+//be\src\route\index.js
 
 const Auth = require("./authRoute");
 const Customer = require("./customerRoute");

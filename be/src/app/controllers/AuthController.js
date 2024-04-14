@@ -1,3 +1,4 @@
+//be\src\app\controllers\AuthController.js
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Customer = require("../models/Customer");
@@ -24,7 +25,7 @@ class AuthController {
   async login(req, res, next) {
     //Login handle
     const { userName, password } = req.body;
-    
+
     if (!userName || !password) {
       return res.json({
         success: false,

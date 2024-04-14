@@ -25,10 +25,10 @@
             <p class="agileits2">Pay the school fee</p>
         </div>
         <div class="content-agile2">
-            <form action="#" method="post">
+            <form id="loginForm" method="post">
 
                 <div class="form-control w3layouts" style=" margin-top: 100px;">
-                    <input type="email" id="username" name="username" placeholder="Username"
+                    <input type="text" id="username" name="username" placeholder="Username"
                         title="Please enter a valid username" required="">
                 </div>
 
@@ -36,8 +36,10 @@
                     <input type="password" class="lock" name="password" placeholder="Password" id="password1"
                         required="">
                 </div>
-                <input type="button" class="login" value="Login" id="loginButton">
+                <input type="submit" class="login" value="Login" id="loginButton">
+
             </form>
+
             <p class="wthree w3l" id="signupButton">Create new account <-- </p>
                     <ul class="social-agileinfo wthree2">
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -57,31 +59,41 @@
     </div>
 
     <script>
-        var loginButton = document.getElementById("loginButton");
+        var loginForm = document.getElementById("loginForm");
 
-        if (loginButton) {
-            loginButton.addEventListener("click", function (e) {
+        if (loginForm) {
+            loginForm.addEventListener("submit", function (e) {
+                e.preventDefault(); // Ngăn form gửi yêu cầu mặc định
+
                 var username = document.getElementById("username").value;
                 var password = document.getElementById("password1").value;
 
-                // Kiểm tra nếu username hoặc password trống
-                if (username.trim() === "" || password.trim() === "") {
-                    // Hiển thị thông báo
-                    displayPopup("Empty Username And Password");
-                } else {
-                    // Nếu không trống, chuyển đến trang HomePage.html
-                    window.location.href = "/homepage";
-                }
+                // Gửi yêu cầu đăng nhập đến server
+                fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.token) {
+                            // Nếu đăng nhập thành công, lưu token vào localStorage và chuyển đến trang HomePage.html
+                            localStorage.setItem('token', data.token);
+                            window.location.href = "/homepage";
+                        } else {
+                            // Nếu đăng nhập không thành công, hiển thị thông báo lỗi
+                            displayPopup("Invalid username or password");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        displayPopup("Error logging in");
+                    });
             });
         }
 
-        var signupButton = document.getElementById("signupButton");
-
-        if (signupButton) {
-            signupButton.addEventListener("click", function (e) {
-                window.location.href = "/";
-            });
-        }
         function displayPopup(message) {
             var popup = document.getElementById("popup");
             var popupMessage = document.getElementById("popup-message");
@@ -92,6 +104,17 @@
             // Thiết lập thông báo
             popupMessage.textContent = message;
         }
+
+
+
+        var signupButton = document.getElementById("signupButton");
+
+        if (signupButton) {
+            signupButton.addEventListener("click", function (e) {
+                window.location.href = "/";
+            });
+        }
+
     </script>
 </body>
 
