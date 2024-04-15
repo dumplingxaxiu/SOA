@@ -1,4 +1,4 @@
-// Các tham chiếu ban đầu
+
 const otpInputs = document.querySelectorAll('input[type="number"]');
 const submitButton = document.getElementById("submit");
 let inputCount = 0,
@@ -15,28 +15,8 @@ const updateInputConfig = (element, disabledStatus) => {
         }
     }
 };
-function sendOTP() {
-    // Gửi yêu cầu HTTP đến máy chủ để gửi email
-    fetch('/sendMail', { // Sửa đổi URL thành "/sendMail"
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: 'asdassgsgs2q321@gmail.com' // Thay recipient bằng email muốn gửi OTP
-        })
-    }).then(response => {
-        if (response.ok) {
-            alert('Email đã được gửi thành công!');
-        } else {
-            alert('Đã xảy ra lỗi khi gửi email.1');
-        }
-    }).catch(error => {
-        console.error('Error:', error);
-    });
-}
 
-// Remove require statements and server.js code here
+
 
 
 otpInputs.forEach((element, index) => {
@@ -48,7 +28,7 @@ otpInputs.forEach((element, index) => {
             updateInputConfig(e.target, true);
             finalInput += value;
             console.log({ index });
-            if (inputCount < 4 && index < otpInputs.length - 1) {
+            if (inputCount < 5 && index < otpInputs.length - 1) {
                 updateInputConfig(otpInputs[index + 1], false); // Kích hoạt input tiếp theo
             }
 
@@ -73,7 +53,7 @@ otpInputs.forEach((element, index) => {
 
 
 window.addEventListener("keyup", (e) => {
-    if (inputCount > 4) {
+    if (inputCount > 5) {
         submitButton.classList.remove("hide");
         submitButton.classList.add("show");
         if (e.key == "Backspace") {

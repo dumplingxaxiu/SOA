@@ -40,9 +40,8 @@ app.get('/', (req, res) => {
     res.render('Customer/SignIn'); // Tên của tệp EJS là SignIn.ejs
 });
 
-app.get('/id=:userId/homepage', (req, res) => {
-    const userId = req.params.userId;
-    res.render('Customer/HomePage', { userId: userId });
+app.get('/homepage', (req, res) => {
+    res.render('Customer/HomePage');
 });
 
 

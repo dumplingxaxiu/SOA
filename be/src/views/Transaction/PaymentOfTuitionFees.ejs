@@ -71,37 +71,44 @@
             </div>
         </div>
         <div class="customer-info dienthongtin">
-            <div>User ID : <span id="userID">123456</span></div>
-            <div>User Name : <span id="fullName">John Doe</span></div>
-            <div>Email: <span id="email">john.doe@example.com</span></div>
-            <div>Phone Number: <span id="phoneNumber">123-456-7890</span></div>
-            <div>Bank Account Number: <span id=" bankAccountNumber">none</span></div>
-            <div>Balance: <span id="balance">none</span></div>
+            <div>User Name : <span id="fullName"></span></div>
+            <div>Email: <span id="email"></span></div>
+            <div>Phone Number: <span id="phoneNumber"></span></div>
+
+            <div>-------------------------------------------------------------------------------------</div>
+
             <div class="input-container">
-                <label for="studentID">Student ID:</label>
-                <input type="text" id="studentID" name="studentID" placeholder="Enter Student ID" readonly>
+                <label for="studentID">Student code:</label>
+                <input type="text" id="studentID" name="studentID" placeholder="Enter Student ID">
+                <button onclick="loadStudentInfo()">Tải thông tin</button>
+
             </div>
             <div class="input-container">
                 <label for="fullname">Students Name:</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Enter Full Name" readonly>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter Full Name">
             </div>
             <div class="input-container">
-                <label for="online-banking">Online Banking:</label>
-                <input type="text" id="online-banking" name="online-banking" placeholder="Enter Online Banking"
-                    readonly>
+                <label for="tuition">Tuition fee: </label>
+                <input type="text" id="tuition" name="tuition" placeholder="Enter Tuition Fee" readonly>
             </div>
             <div class="input-container">
-                <label for="state">State:</label>
-                <input type="text" id="state" name="state">
+                <label for="state">Tuition status:</label>
+                <input type="text" id="state" name="state" readonly>
             </div>
+
+            <div>-------------------------------------------------------------------------------------</div>
+
             <div class="input-container">
                 <label for="account balance">Available balances:</label>
-                <input type="text" id="account balance" name="account balance" value="1000" readonly>
+                <input type="text" id="account balance" name="account balance" readonly>
             </div>
             <div class="input-container">
-                <label for="amount">Enter Your Amount:</label>
-                <input type="text" id="amount" name="amount" placeholder="Enter Amount">
+                <label for="amount">Tuition amount to be paid:</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter Amount" value="0">
             </div>
+
+
+
         </div>
 
 
@@ -126,6 +133,87 @@
     </script>
 
     <script>
+        function containsNumber(inputString) {
+            return /\d/.test(inputString);
+        }
+
+        function allInputsFilled() {
+            const studentID = document.getElementById('studentID').value;
+            const fullName = document.getElementById('fullname').value;
+            const tuitionAmount = document.getElementById('amount').value;
+
+            // Kiểm tra xem tất cả các ô đã được điền đầy đủ hay không
+            if (studentID.trim() === '' || fullName.trim() === '' || tuitionAmount.trim() === '') {
+                return false; // Có ô input rỗng
+            }
+            return true; // Tất cả các ô đã được điền đầy đủ
+        }
+
+        function proceedToPayment() {
+            const amountInput = document.getElementById('amount');
+            const sotiennhap = parseInt(amountInput.value);
+
+            const tuitionInput = document.getElementById('tuition');
+            const hocphi = parseInt(tuitionInput.value);
+
+            const stateInput = document.getElementById('state');
+            const state = stateInput.value;
+
+            const fullNameInput = document.getElementById('fullname');
+            const fullName = fullNameInput.value;
+
+            const balanceInput = document.getElementById('account balance');
+            const sodu = parseInt(balanceInput.value);
+
+            // Kiểm tra xem tất cả các ô đã được điền đầy đủ hay không
+            if (!allInputsFilled()) {
+                showMessage('Vui lòng điền đầy đủ thông tin.', 'error');
+                return;
+            }
+
+            // Kiểm tra số tiền nhập vào có nhỏ hơn hoặc bằng số tiền học phí không
+            if (sotiennhap == hocphi) {
+                // Kiểm tra trạng thái học phí có phải là "Unpaid" không
+                if (state === 'Unpaid') {
+                    // Kiểm tra xem họ tên đã được điền đầy đủ hay không
+                    if (!containsNumber(fullName.trim())) {
+                        // Kiểm tra xem số tiền nhập vào có phải là số hay không
+                        if (sotiennhap != 0) {
+                            // Kiểm tra số dư
+                            if (sotiennhap > sodu) {
+                                showMessage('Số dư không đủ để thanh toán học phí.', 'error');
+                            } else {
+
+                                showMessage('Thanh toán thành công!', 'success');
+
+                                window.location.href = "/homepage/paymentoftuitionfees/otpconfirmationpage";
+                            }
+                        } else {
+                            showMessage('Số tiền không hợp lệ. Vui lòng nhập một số hợp lệ.', 'error');
+                        }
+                    } else {
+                        showMessage('Vui lòng nhập họ và tên của bạn.', 'error');
+                    }
+                } else {
+                    showMessage('Học phí đã được thanh toán.', 'error');
+                }
+            } else if (sotiennhap < hocphi) {
+                showMessage('Số tiền không đủ để học phí.', 'error');
+
+            } else {
+                showMessage('Số tiền vượt quá học phí.', 'error');
+            }
+        }
+
+        function showMessage(message, type) {
+            if (type === 'error') {
+                alert('Error: ' + message);
+            } else {
+                alert(message);
+            }
+        }
+
+
         // Dữ liệu mẫu
         const tuitionFeesData = [
             { id: 1, type: 'Type 1', name: 'Tuition Fee 1', price: 100, link: '/homepage/paymentoftuitionfees/paymentinformationpage' },
@@ -162,7 +250,84 @@
         if (tableBody.childElementCount > 10) {
             tableBodyWrapper.style.overflowY = 'auto';
         }
+
+
+        var storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            console.log('Token found in localStorage:', storedToken);
+            // Lấy dữ liệu từ token
+            fetch('/api/fetchData', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${storedToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.user) {
+                        // Truyền dữ liệu vào các trường HTML tương ứng
+                        document.getElementById('fullName').textContent = data.user.fullName || 'N/A';
+                        document.getElementById('email').textContent = data.user.email || 'N/A';
+                        document.getElementById('phoneNumber').textContent = data.user.phoneNumber || 'N/A';
+                        var balance = data.user.balance;
+                        document.getElementById('account balance').value = balance;
+                    } else {
+                        console.log('Error fetching user data:', data.message || 'Unknown error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        } else {
+            console.log('Token not found in localStorage');
+            // Nếu token không được tìm thấy, bạn có thể thực hiện xử lý khác tùy theo nhu cầu của bạn
+        }
+
+
+
+        function loadStudentInfo() {
+            const studentIDInput = document.getElementById('studentID');
+            const studentID = studentIDInput.value;
+
+            // Thực hiện yêu cầu AJAX để lấy dữ liệu từ cơ sở dữ liệu
+            fetch(`/api/tutions/${studentID}`, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Kiểm tra xem dữ liệu có hợp lệ không
+                    if (data) {
+                        console.log('Tuition from server:', data.tuition.tuition);
+
+                        const tuition = parseInt(data.tuition.tuition);
+
+
+                        // Cập nhật giá trị của trường "tuition" và "state"
+                        const tuitionFeeInput = document.getElementById('tuition');
+                        const stateInput = document.getElementById('state');
+
+                        if (!isNaN(tuition) && data.tuition.state) {
+                            tuitionFeeInput.value = tuition;
+                            stateInput.value = data.tuition.state;
+                        } else {
+                            // Nếu dữ liệu không tồn tại hoặc không hợp lệ, cập nhật giá trị mặc định
+                            tuitionFeeInput.value = 'N/A';
+                            stateInput.value = 'N/A';
+                        }
+                    } else {
+                        // Xử lý trường hợp không tìm thấy sinh viên hoặc lỗi khác
+                        console.error('Error:', data.message || 'Unknown error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
     </script>
+    <div id="message-container"></div> <!-- Container để hiển thị thông báo -->
 </body>
 
 </html>

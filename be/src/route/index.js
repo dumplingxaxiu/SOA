@@ -8,6 +8,10 @@ const SendMail = require("./sendMail"); // them route sendMail
 const Invoice = require("./invoiceRoute");
 const AccessKeyValidate = require("../app/middleware/partnerKeyValidate");
 const AuthController = require('../app/controllers/AuthController');
+const tutionRoute = require('../route/tutionRoute');
+const UpdateCitizenID = require("../route/updateCitizenID"); // Import route mới
+const TransactionHistory = require('../route/TransactionHistory_route');
+
 const route = (app) => {
   app.use(bodyParser.json());
   app.use("/api/auth", AccessKeyValidate, Auth);
@@ -27,6 +31,10 @@ const route = (app) => {
     Auth(req, res, next);
   });
   app.get("/api/fetchData", AuthController.fetchData);
+  app.use("/api/tutions", tutionRoute);
+  app.use("/api/updateCitizenID", UpdateCitizenID); // Sử dụng route mới
+  app.use("/api/invoice", Invoice);
+  app.use("/api/fetchtranhistory", TransactionHistory);
 }
 
 module.exports = route;

@@ -12,6 +12,7 @@ var YYYY = today.getFullYear();
 var hh = today.getHours()
 var mm = today.getMinutes()
 var ss = today.getSeconds()
+const cache = require('memory-cache');
 
 const OTPGenerator = () => {
     return Math.floor(100000 + Math.random() * 900000).toString()
@@ -20,7 +21,7 @@ const OTPGenerator = () => {
 // Hàm gửi mã OTP qua email
 const OTPSigned = async (email) => {
     let otp = OTPGenerator();
-    console.log(otp);
+    cache.put('sentOTP', otp);
 
     // Tạo thời gian hết hạn của mã OTP
     let expiredAt = new Date();
@@ -42,11 +43,8 @@ const OTPSigned = async (email) => {
             console.log("OTP email sent successfully:", info);
         }
     });
-
-    // Hash mã OTP và trả về mã đã hash cùng với thời gian hết hạn
-    let hashedOTP = bcrypt.hashSync(otp, 10);
     return {
-        otp: hashedOTP,
+        otp: otp,
         expiredAt: expiredAt
     }
 }
@@ -86,5 +84,6 @@ const OTPVerify = async (key, otp) => {
             message: "transaction verified"
         }
     }
+
 }
 module.exports = { OTPSigned, OTPVerify }

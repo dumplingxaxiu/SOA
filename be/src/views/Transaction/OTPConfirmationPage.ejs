@@ -50,6 +50,11 @@
                             <input type="number" class="otp-input" id="otp5" maxlength="1" min="0" max="9" disabled />
                         </div>
                     </div>
+                    <div class="o-t-p-circle-group">
+                        <div class="o-t-p-circle-group-child1">
+                            <input type="number" class="otp-input" id="otp6" maxlength="1" min="0" max="9" disabled />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="cha-nhn-c-otp-wrapper">
@@ -69,7 +74,7 @@
             </section>
         </div>
     </div>
-    <script src="../JS/OTPConfirmationPage.js"></script>
+    <script src="/JS/OTPConfirmationPage.js"></script>
     <script>
         var groupButton = document.getElementById("groupButton");
         if (groupButton) {
@@ -84,6 +89,117 @@
                 window.location.href = "/homepage/paymentoftuitionfees/otpconfirmationpage/transactionresultpage";
             });
         }
+
+
+        var storedToken = localStorage.getItem('token');
+        var email1; // Di chuyển phần khai báo ra khỏi phạm vi của hàm then
+
+        if (storedToken) {
+            console.log('Token found in localStorage OTP:', storedToken);
+            // Lấy dữ liệu từ token
+            fetch('/api/fetchData', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${storedToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.user) {
+                        email1 = data.user.email; // Gán giá trị cho email1 ở đây
+                        ail1 = data.user._id;
+                        console.log(ail1);
+                    } else {
+                        console.log('Error fetching user data:', data.message || 'Unknown error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        } else {
+            console.log('Token not found in localStorage');
+            // Nếu token không được tìm thấy, bạn có thể thực hiện xử lý khác tùy theo nhu cầu của bạn
+        }
+        function sendOTP() {
+            // Gửi yêu cầu HTTP đến máy chủ để gửi email
+            fetch('/api/sendMail', { // Sửa đổi URL thành "/sendMail"
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+
+                    email: email1 // Thay recipient bằng email muốn gửi OTP
+                })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Email đã được gửi thành công!');
+
+                    updateCitizenIDWithOTP(ail1);
+                } else {
+                    alert('Đã xảy ra lỗi khi gửi email.1');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function updateCitizenIDWithOTP(_id) {
+            const storedToken = localStorage.getItem('token');
+            const cache = require('memory-cache');
+
+            // Truy cập OTP từ cache
+            const cachedOTP = cache.get('sentOTP');
+
+            if (storedToken) {
+                fetch('/api/updateCitizenID', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${storedToken}`
+                    },
+                    body: JSON.stringify({
+                        _id: _id,
+                        otp: cachedOTP
+                    })
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Failed to update OTP');
+                        }
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            // Kiểm tra sự giống nhau giữa OTP đã cập nhật và OTP mà người dùng nhập vào từ 6 input
+                            const enteredOTP = document.getElementById('otp1').value +
+                                document.getElementById('otp2').value +
+                                document.getElementById('otp3').value +
+                                document.getElementById('otp4').value +
+                                document.getElementById('otp5').value +
+                                document.getElementById('otp6').value;
+                            if (data.user.citizenID === enteredOTP) {
+                                // Nếu OTP giống nhau, chuyển hướng sang trang kế tiếp
+                                window.location.href = "/nextpage";
+                            } else {
+                                alert('Mã OTP không khớp.');
+                            }
+                        } else {
+                            throw new Error('Failed to update OTP');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating OTP:', error);
+                        alert('Đã xảy ra lỗi khi cập nhật OTP.');
+                    });
+            } else {
+                console.error('Token not found in localStorage');
+                alert('Đã xảy ra lỗi khi cập nhật OTP.');
+            }
+        }
+
+
     </script>
 </body>
 
